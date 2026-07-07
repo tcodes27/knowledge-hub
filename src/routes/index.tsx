@@ -59,18 +59,18 @@ function Home() {
                 Search across everything your team knows, capture new procedures
                 in minutes, and publish with confidence.
               </p>
-              <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8">
-                <div>
-                  <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Avg. resolution</dt>
-                  <dd className="mt-2 font-display text-2xl font-medium text-foreground">5 min</dd>
+              <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-foreground/15 pt-10">
+                <div className="flex min-h-[4.5rem] flex-col justify-between">
+                  <dt className="min-h-[2rem] text-[11px] font-medium uppercase leading-[1.25] tracking-[0.14em] text-muted-foreground">Avg. resolution</dt>
+                  <dd className="font-display text-2xl font-medium text-foreground">5 min</dd>
                 </div>
-                <div>
-                  <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Articles</dt>
-                  <dd className="mt-2 font-display text-2xl font-medium text-foreground">50+</dd>
+                <div className="flex min-h-[4.5rem] flex-col justify-between">
+                  <dt className="min-h-[2rem] text-[11px] font-medium uppercase leading-[1.25] tracking-[0.14em] text-muted-foreground">Articles</dt>
+                  <dd className="font-display text-2xl font-medium text-foreground">50+</dd>
                 </div>
-                <div>
-                  <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Self-serve</dt>
-                  <dd className="mt-2 font-display text-2xl font-medium text-foreground">24/7</dd>
+                <div className="flex min-h-[4.5rem] flex-col justify-between">
+                  <dt className="min-h-[2rem] text-[11px] font-medium uppercase leading-[1.25] tracking-[0.14em] text-muted-foreground">Self-serve</dt>
+                  <dd className="font-display text-2xl font-medium text-foreground">24/7</dd>
                 </div>
               </dl>
             </div>

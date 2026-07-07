@@ -1,37 +1,36 @@
-## Fix: favicon and Apps Script updates not appearing
+## Fix: stats alignment, default light theme, dark-mode yellow readability
 
-Two separate issues — both are cache / deployment problems, not code bugs. Small, targeted changes.
+Three scoped changes. Keeps the neon yellow highlights — just makes the text on them readable in dark mode.
 
-### 1. Favicon not updating across the platform
+### 1. Hero stats alignment + visible divider (`src/routes/index.tsx`)
 
-The new `public/favicon.png` exists and `__root.tsx` references `/favicon.png`, but browsers cache favicons very aggressively (often for weeks) and won't re-fetch on a normal reload. Nothing in the code is broken.
+"AVG. RESOLUTION" wraps to two lines while "ARTICLES" and "SELF-SERVE" stay on one, so `5 min` drops below `50+` / `24/7`. The `border-t` also nearly disappears on cream.
 
-**Change:** cache-bust the favicon by appending a version query string so every browser/tab is forced to fetch the new file.
+- Each grid item becomes `flex flex-col justify-between` with `min-h-[4.5rem]` so the numbers sit on a shared baseline regardless of label wrap.
+- Add `min-h-[2rem]` and `leading-[1.25]` to the `<dt>` so single-line labels reserve two lines of space.
+- Change the divider from `border-border` to `border-foreground/15` and bump `pt-8` → `pt-10`.
 
-- `src/routes/__root.tsx` — update the icon link:
-  - from `{ rel: "icon", type: "image/png", href: "/favicon.png" }`
-  - to `{ rel: "icon", type: "image/png", href: "/favicon.png?v=2" }`
-- Also add `{ rel: "shortcut icon", type: "image/png", href: "/favicon.png?v=2" }` so older browsers and the legacy `/favicon.ico` lookup pick up the PNG.
+### 2. Default to light theme on first visit
 
-After deploy, users may still need one hard refresh (Cmd/Ctrl+Shift+R) in tabs already open — but new tabs, previews, and social crawlers will get the new icon immediately.
+Currently the theme falls back to the OS `prefers-color-scheme`, so dark-OS visitors land in dark mode. Stored preference should still win.
 
-### 2. Apps Script changes not reflected on `/admin`
+- `src/hooks/use-theme.ts` — in `getInitialTheme()`, drop the `matchMedia` fallback and return `"light"` when nothing is stored.
+- `src/routes/__root.tsx` — update the inline `themeInitScript` the same way: if no stored value, use `"light"`.
 
-The frontend calls whatever URL is in `.env.local` → `VITE_GOOGLE_APPS_SCRIPT_URL`. That URL is unchanged and correct. If the admin page still shows no requests after you pasted the new script, one of these is true (all outside the code):
+### 3. Dark-mode yellow: keep the color, darken the text on it
 
-1. The new Apps Script code was saved but **not redeployed as a new version** — Apps Script `/exec` URLs keep serving the old code until you run **Deploy → Manage deployments → Edit (pencil) → Version: New version → Deploy**.
-2. It was deployed as a **new deployment** instead, which produces a different `/exec` URL — in that case `.env.local` needs the new URL.
-3. Browser is caching the `GET /exec?action=get_requests` response.
+The neon `#FFF76D` stays. The problem is text sitting on yellow in dark mode is unreadable because the `.highlight-yellow` utility uses `color: var(--foreground)` — which is cream in dark mode, so cream text ends up on cream-yellow.
 
-**Change (frontend only, presentation-safe):** add a `cache: "no-store"` and a cache-busting timestamp to the `get_requests` fetch so the browser and any intermediary never serve a stale response. This is a one-line addition in `src/services/googleAppsScript.ts` inside the existing GET call — no change to actions, payload shape, or the admin UI.
+- `src/styles.css` — in the `@utility highlight-yellow` block, change `color: var(--foreground)` to a fixed dark ink (`color: #1A130A`) so highlighted words always render as very dark brown/black on the yellow, in both themes. The light-mode look stays essentially identical (light `--foreground` was already near-black); dark mode goes from cream-on-yellow (invisible) to ink-on-yellow (crisp).
+- Also set `--warning-foreground: #1A130A` inside `.dark` (currently `#17110B` — fine, but confirm consistency) and leave `--accent-foreground` (already `#17110B`) as-is. Warning/accent chip text was already dark, so this is a no-op safeguard.
 
-### What this plan does NOT change
+### Out of scope
 
-- No changes to the Apps Script itself, the Google Sheet, the API contract, `.env.local`, admin page layout, filtering logic, or any other route.
-- No favicon regeneration — the current PNG stays.
+- No favicon, Apps Script, admin, or content changes.
+- Yellow hue and highlight utility name are unchanged.
 
-### Verification after build
+### Verification
 
-1. Open `/admin` in a fresh tab → tab icon shows the new "K" mark.
-2. Click **Refresh** on the Documentation Requests panel → network tab shows a new `get_requests` call with a `?_=<timestamp>` param and status 200.
-3. If requests still don't appear, the issue is on the Apps Script deployment side (item 1 or 2 above), not the frontend — I'll give exact redeploy steps.
+1. Fresh browser (no storage) on a dark-OS machine → site loads in light mode.
+2. Toggle to dark → the yellow highlight bands on the homepage ("operating knowledge", "editorial calm", testimonial phrase) show dark ink text on the yellow, clearly readable.
+3. Hero: `5 min`, `50+`, `24/7` share a baseline; divider is clearly visible on cream.
