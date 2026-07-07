@@ -57,7 +57,7 @@ export function SiteNav() {
             to="/request"
             className="inline-flex items-center rounded-xl bg-primary px-6 py-3 text-[14px] font-medium text-primary-foreground transition-all duration-200 hover:bg-[var(--primary)]/90 hover:-translate-y-px"
           >
-            Submit Request
+            Submit Doc Request
           </Link>
         </div>
       </div>
