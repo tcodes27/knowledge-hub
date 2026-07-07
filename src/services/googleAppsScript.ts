@@ -68,12 +68,14 @@ async function postToAppsScript<T = unknown>(body: Record<string, unknown>): Pro
   }
 
   try {
-    const response = await fetch(API_URL, {
+    const url = `${API_URL}${API_URL.includes("?") ? "&" : "?"}_=${Date.now()}`;
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain;charset=utf-8",
       },
       body: JSON.stringify(body),
+      cache: "no-store",
     });
 
     const json = await response.json();
