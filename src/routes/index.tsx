@@ -7,9 +7,9 @@ import { SearchPanel } from "@/components/search-panel";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sprinter IT Hub — Solve IT issues in minutes" },
+      { title: "Knowledge Hub — Solve IT issues in minutes" },
       { name: "description", content: "Search clear, step-by-step fixes for common IT problems before opening a ticket." },
-      { property: "og:title", content: "Sprinter IT Hub" },
+      { property: "og:title", content: "Knowledge Hub" },
       { property: "og:description", content: "Search clear, step-by-step fixes for common IT problems before opening a ticket." },
     ],
   }),

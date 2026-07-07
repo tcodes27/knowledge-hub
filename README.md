@@ -1,4 +1,4 @@
-# Sprinter IT Hub
+# Knowledge Hub
 
 ### Enterprise IT Knowledge Management Platform
 
@@ -50,7 +50,7 @@ This creates several operational challenges:
 - **Slow employee onboarding** increases the time it takes for new hires to become productive.
 - **Lack of standardized documentation** makes it difficult to scale support across teams or locations.
 
-**Sprinter IT Hub** addresses these challenges by giving employees a single, searchable place to find clear, step-by-step solutions to common IT problems. When an issue cannot be resolved through self-service, employees can submit a documentation request so the IT team can turn that gap into a published article for future use.
+**Knowledge Hub** addresses these challenges by giving employees a single, searchable place to find clear, step-by-step solutions to common IT problems. When an issue cannot be resolved through self-service, employees can submit a documentation request so the IT team can turn that gap into a published article for future use.
 
 The result is a self-reinforcing knowledge base: every support interaction becomes an opportunity to improve documentation, reduce future tickets, and accelerate onboarding.
 
@@ -133,7 +133,7 @@ Future Employees Benefit
 ```text
 Employee
     ↓
-Sprinter IT Hub (Frontend)
+Knowledge Hub (Frontend)
     ↓
 Documentation Repository
     ↓
@@ -203,7 +203,7 @@ This approach demonstrates how documentation can move from ad-hoc support reques
 
 ## Design Goals
 
-Sprinter IT Hub was intentionally designed around five core principles:
+Knowledge Hub was intentionally designed around five core principles:
 
 1. **Reduce repetitive IT support requests** — Make the most common issues solvable without opening a ticket.
 2. **Improve employee self-service** — Give employees a fast, intuitive way to find answers on their own.
@@ -284,7 +284,7 @@ The MVP intentionally validates the user experience, documentation workflow, and
 
 ## Phase 2 — Knowledge Capture Platform
 
-Building on the current MVP, Phase 2 expands Sprinter IT Hub into a broader knowledge capture platform. It will help organizations capture, organize, operationalize, and maintain institutional knowledge across teams and systems.
+Building on the current MVP, Phase 2 expands Knowledge Hub into a broader knowledge capture platform. It will help organizations capture, organize, operationalize, and maintain institutional knowledge across teams and systems.
 
 Future capabilities will include:
 
@@ -327,7 +327,7 @@ This project was created to demonstrate how thoughtful documentation management,
 
 The goal was not just to build a searchable knowledge base, but to design a platform that feels like a real enterprise SaaS product. Every interaction, animation, and workflow decision was made to communicate trust, clarity, and operational efficiency.
 
-Sprinter IT Hub shows how product design and operational thinking can turn everyday support friction into a scalable, self-improving system.
+Knowledge Hub shows how product design and operational thinking can turn everyday support friction into a scalable, self-improving system.
 
 ---
 

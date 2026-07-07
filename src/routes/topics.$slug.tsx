@@ -14,9 +14,9 @@ export const Route = createFileRoute("/topics/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.category.name ?? "Topic"} — Sprinter IT Hub` },
+      { title: `${loaderData?.category.name ?? "Topic"} — Knowledge Hub` },
       { name: "description", content: loaderData?.category.description ?? "" },
-      { property: "og:title", content: `${loaderData?.category.name ?? "Topic"} — Sprinter IT Hub` },
+      { property: "og:title", content: `${loaderData?.category.name ?? "Topic"} — Knowledge Hub` },
       { property: "og:description", content: loaderData?.category.description ?? "" },
     ],
   }),

@@ -15,13 +15,13 @@ const FORM_ID = "knowledge-capture-form";
 export const Route = createFileRoute("/request")({
   head: () => ({
     meta: [
-      { title: "Knowledge Capture — Sprinter IT Hub" },
+      { title: "Knowledge Capture — Knowledge Hub" },
       {
         name: "description",
         content:
           "Submit organizational knowledge via manual entry, file upload, existing integrations, or AI-assisted capture.",
       },
-      { property: "og:title", content: "Knowledge Capture — Sprinter IT Hub" },
+      { property: "og:title", content: "Knowledge Capture — Knowledge Hub" },
       {
         property: "og:description",
         content:

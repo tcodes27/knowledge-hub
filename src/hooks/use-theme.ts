@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export type Theme = "light" | "dark";
 
-const STORAGE_KEY = "sprinter-it-theme";
+const STORAGE_KEY = "knowledge-hub-theme";
 
 export function getInitialTheme(): Theme {
   if (typeof window === "undefined") return "light";
