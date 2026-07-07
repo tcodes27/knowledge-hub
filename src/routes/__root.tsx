@@ -105,7 +105,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 const themeInitScript = `
-(function(){try{var k='knowledge-hub-theme';var s=localStorage.getItem(k);var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=(s==='light'||s==='dark')?s:(d?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark');document.documentElement.style.colorScheme=t;}catch(e){}})();
+(function(){try{var k='knowledge-hub-theme';var s=localStorage.getItem(k);var t=(s==='light'||s==='dark')?s:'light';if(t==='dark')document.documentElement.classList.add('dark');document.documentElement.style.colorScheme=t;}catch(e){}})();
 `;
 
 function RootShell({ children }: { children: ReactNode }) {
