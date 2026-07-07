@@ -281,7 +281,7 @@
 
 @utility highlight-yellow {
   background: var(--highlight);
-  color: var(--foreground);
+  color: #1A130A;
   padding: 0.05em 0.25em;
   border-radius: 0.15em;
   box-decoration-break: clone;
