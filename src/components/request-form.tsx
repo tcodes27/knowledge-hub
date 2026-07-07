@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, Send, X, Loader2, AlertCircle } from "lucide-react";
 import { categories } from "@/data/articles";
 import { submitDocumentationRequest } from "@/services/googleAppsScript";
@@ -17,14 +17,20 @@ export function RequestForm({
   onDone,
   hideSubmit = false,
   formId,
+  onStatusChange,
 }: {
   onDone?: () => void;
   hideSubmit?: boolean;
   formId?: string;
+  onStatusChange?: (status: Status) => void;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [modal, setModal] = useState<null | "success" | "error">(null);
   const [form, setForm] = useState(INITIAL_FORM);
+
+  useEffect(() => {
+    onStatusChange?.(status);
+  }, [status, onStatusChange]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
