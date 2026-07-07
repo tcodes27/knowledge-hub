@@ -1,65 +1,37 @@
-## Problem
+## Fix: favicon and Apps Script updates not appearing
 
-The `/admin` page shows no requests. The Apps Script call succeeds (HTTP 200), but the response payload looks like this:
+Two separate issues — both are cache / deployment problems, not code bugs. Small, targeted changes.
 
-```json
-{"success": true, "requests": [
-  {"Documentation Requests": "This is the intake queue...", "": ""},
-  {"Documentation Requests": "", "": ""},
-  {"Documentation Requests": "request_id", "": "notes"},
-  {"Documentation Requests": "REQ-1001", "": ""},
-  ...
-]}
-```
+### 1. Favicon not updating across the platform
 
-Root cause: the `Documentation_Requests` sheet has a **banner title in row 1**, a **blank row 2**, and the **real header row** (`request_id`, `title`, `category`, …, `notes`) in **row 3**. The current `getDocumentationRequests()` treats row 1 as headers, so every object comes back with keys like `"Documentation Requests"` and `""` instead of `request_id`, `status`, `priority`, etc. The frontend filter (New / In Review / Drafting / Approved) then matches nothing and renders an empty list.
+The new `public/favicon.png` exists and `__root.tsx` references `/favicon.png`, but browsers cache favicons very aggressively (often for weeks) and won't re-fetch on a normal reload. Nothing in the code is broken.
 
-`updateRequestStatus()` has the same assumption and will also fail (it can't find the `request_id` / `status` / `updated_at` columns in row 1).
+**Change:** cache-bust the favicon by appending a version query string so every browser/tab is forced to fetch the new file.
 
-## Fix (Apps Script only — no frontend, no sheet, no data-model changes)
+- `src/routes/__root.tsx` — update the icon link:
+  - from `{ rel: "icon", type: "image/png", href: "/favicon.png" }`
+  - to `{ rel: "icon", type: "image/png", href: "/favicon.png?v=2" }`
+- Also add `{ rel: "shortcut icon", type: "image/png", href: "/favicon.png?v=2" }` so older browsers and the legacy `/favicon.ico` lookup pick up the PNG.
 
-Add a small helper that scans the top of the sheet for the real header row (the first row that contains `request_id`), and use it in both read/update functions.
+After deploy, users may still need one hard refresh (Cmd/Ctrl+Shift+R) in tabs already open — but new tabs, previews, and social crawlers will get the new icon immediately.
 
-### 1. New helper
+### 2. Apps Script changes not reflected on `/admin`
 
-```js
-// Finds the header row (1-indexed) and returns { headerRow, headers, dataStartRow }
-function findHeaderRow_(values) {
-  for (var i = 0; i < Math.min(values.length, 20); i++) {
-    var row = values[i].map(function (v) { return String(v || "").trim().toLowerCase(); });
-    if (row.indexOf("request_id") !== -1) {
-      return { headerRow: i + 1, headers: values[i], dataStartRow: i + 2 };
-    }
-  }
-  throw new Error("Header row with 'request_id' not found.");
-}
-```
+The frontend calls whatever URL is in `.env.local` → `VITE_GOOGLE_APPS_SCRIPT_URL`. That URL is unchanged and correct. If the admin page still shows no requests after you pasted the new script, one of these is true (all outside the code):
 
-### 2. Update `getDocumentationRequests()`
+1. The new Apps Script code was saved but **not redeployed as a new version** — Apps Script `/exec` URLs keep serving the old code until you run **Deploy → Manage deployments → Edit (pencil) → Version: New version → Deploy**.
+2. It was deployed as a **new deployment** instead, which produces a different `/exec` URL — in that case `.env.local` needs the new URL.
+3. Browser is caching the `GET /exec?action=get_requests` response.
 
-- Read all values.
-- Call `findHeaderRow_(values)` to locate the real headers.
-- Map only rows **after** the header row into objects using those headers.
-- Skip empty rows (rows where `request_id` is blank).
+**Change (frontend only, presentation-safe):** add a `cache: "no-store"` and a cache-busting timestamp to the `get_requests` fetch so the browser and any intermediary never serve a stale response. This is a one-line addition in `src/services/googleAppsScript.ts` inside the existing GET call — no change to actions, payload shape, or the admin UI.
 
-### 3. Update `updateRequestStatus()`
+### What this plan does NOT change
 
-- Read all values.
-- Call `findHeaderRow_(values)` to get `headers` and `dataStartRow`.
-- Compute `idCol`, `statusCol`, `updatedCol` from those headers.
-- Iterate from `dataStartRow` (not row 2) when searching for the matching `request_id`.
-- Use `sheet.getRange(rowIndex, statusCol + 1)` / `updatedCol + 1` where `rowIndex` is the actual 1-indexed sheet row.
+- No changes to the Apps Script itself, the Google Sheet, the API contract, `.env.local`, admin page layout, filtering logic, or any other route.
+- No favicon regeneration — the current PNG stays.
 
-### 4. Optional but recommended: `submitDocumentationRequest()`
+### Verification after build
 
-Right now `appendRow` assumes column order matches the hard-coded array. Once we know `headers`, we can build the row from a `{ column: value }` map so the append is resilient if the sheet columns are ever reordered. (Order-preserving append; no schema change.)
-
-## Deployment note (for you to do after pasting the script)
-
-In Apps Script: **Deploy → Manage deployments → edit the existing Web App deployment → New version → Deploy**. Reusing the same deployment keeps the current `/exec` URL, so no frontend `.env` change is needed.
-
-## Out of scope
-
-- No changes to `src/services/googleAppsScript.ts` or `src/routes/admin.tsx`.
-- No changes to the Google Sheet structure (banner row stays where it is).
-- No changes to API shape, actions, auth, or the `.env` URL.
+1. Open `/admin` in a fresh tab → tab icon shows the new "K" mark.
+2. Click **Refresh** on the Documentation Requests panel → network tab shows a new `get_requests` call with a `?_=<timestamp>` param and status 200.
+3. If requests still don't appear, the issue is on the Apps Script deployment side (item 1 or 2 above), not the frontend — I'll give exact redeploy steps.
