@@ -1050,26 +1050,47 @@ function LiveRequestsSection() {
             </div>
           )}
 
-          {state.status === "ready" && state.data.length > 0 && (
-            <ul className="grid gap-3">
-              {state.data.map((r, idx) => {
-                const rid = String(
-                  (r as unknown as Record<string, unknown>).id ??
-                    (r as unknown as Record<string, unknown>).request_id ??
-                    (r as unknown as Record<string, unknown>).requestId ??
-                    idx,
-                );
-                return (
-                  <RequestRow
-                    key={rid}
-                    req={r}
-                    updating={updatingId === rid}
-                    onStatusChange={(s) => handleStatusChange(rid, s)}
-                  />
-                );
-              })}
-            </ul>
-          )}
+          {state.status === "ready" && state.data.length > 0 && (() => {
+            const STATUS_ORDER: DocumentationRequestStatus[] = ["New", "In Review", "Drafting", "Approved"];
+            const getField = (r: DocumentationRequest, key: string) =>
+              (r as unknown as Record<string, unknown>)[key];
+            const getUpdated = (r: DocumentationRequest) => {
+              const v = getField(r, "updated_at") ?? getField(r, "updatedAt") ?? getField(r, "created_at") ?? getField(r, "createdAt");
+              const t = v ? new Date(String(v)).getTime() : NaN;
+              return Number.isFinite(t) ? t : 0;
+            };
+            const normalized = (s: unknown) => String(s ?? "").trim().toLowerCase();
+            const picked = STATUS_ORDER
+              .map((status) => {
+                const matches = state.data
+                  .map((r, idx) => ({ r, idx }))
+                  .filter(({ r }) => normalized(getField(r, "status")) === status.toLowerCase());
+                if (matches.length === 0) return null;
+                matches.sort((a, b) => getUpdated(b.r) - getUpdated(a.r));
+                return matches[0];
+              })
+              .filter((x): x is { r: DocumentationRequest; idx: number } => x !== null);
+            return (
+              <ul className="grid gap-3">
+                {picked.map(({ r, idx }) => {
+                  const rid = String(
+                    getField(r, "id") ??
+                      getField(r, "request_id") ??
+                      getField(r, "requestId") ??
+                      idx,
+                  );
+                  return (
+                    <RequestRow
+                      key={rid}
+                      req={r}
+                      updating={updatingId === rid}
+                      onStatusChange={(s) => handleStatusChange(rid, s)}
+                    />
+                  );
+                })}
+              </ul>
+            );
+          })()}
         </div>
       </div>
 
