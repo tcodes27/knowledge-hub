@@ -13,7 +13,15 @@ const INITIAL_FORM = {
   submitted_by: "",
 };
 
-export function RequestForm({ onDone }: { onDone?: () => void }) {
+export function RequestForm({
+  onDone,
+  hideSubmit = false,
+  formId,
+}: {
+  onDone?: () => void;
+  hideSubmit?: boolean;
+  formId?: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [modal, setModal] = useState<null | "success" | "error">(null);
   const [form, setForm] = useState(INITIAL_FORM);
@@ -55,7 +63,7 @@ export function RequestForm({ onDone }: { onDone?: () => void }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form id={formId} onSubmit={handleSubmit} className="space-y-5">
         <Field label="Article title">
           <input
             required
@@ -115,21 +123,23 @@ export function RequestForm({ onDone }: { onDone?: () => void }) {
             ))}
           </div>
         </Field>
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-card transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-primary/90 hover:shadow-card-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:scale-100"
-        >
-          {status === "loading" ? (
-            <>
-              Submitting… <Loader2 className="h-4 w-4 animate-spin" />
-            </>
-          ) : (
-            <>
-              Submit request <Send className="h-4 w-4" />
-            </>
-          )}
-        </button>
+        {!hideSubmit && (
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-card transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-primary/90 hover:shadow-card-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:scale-100"
+          >
+            {status === "loading" ? (
+              <>
+                Submitting… <Loader2 className="h-4 w-4 animate-spin" />
+              </>
+            ) : (
+              <>
+                Submit request <Send className="h-4 w-4" />
+              </>
+            )}
+          </button>
+        )}
       </form>
 
       {modal && (
