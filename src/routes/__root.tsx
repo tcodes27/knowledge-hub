@@ -77,11 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#6B4EFF" },
-      { title: "Sprinter IT Hub — Solve IT issues in minutes" },
-      { name: "description", content: "Internal knowledge base for Sprinter Health employees. Find clear, step-by-step fixes for common IT issues before opening a ticket." },
-      { property: "og:title", content: "Sprinter IT Hub" },
-      { property: "og:description", content: "Internal knowledge base for Sprinter Health employees." },
+      { name: "theme-color", content: "#FAFAF5" },
+      { title: "Knowledge Hub — Enterprise knowledge, organized." },
+      { name: "description", content: "A premium home for your organization's operating knowledge. Search, capture, and publish enterprise documentation with editorial calm." },
+      { property: "og:title", content: "Knowledge Hub" },
+      { property: "og:description", content: "A premium home for your organization's operating knowledge." },
+      { property: "og:site_name", content: "Knowledge Hub" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -90,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap",
       },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
@@ -103,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 const themeInitScript = `
-(function(){try{var k='sprinter-it-theme';var s=localStorage.getItem(k);var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=(s==='light'||s==='dark')?s:(d?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark');document.documentElement.style.colorScheme=t;}catch(e){}})();
+(function(){try{var k='knowledge-hub-theme';var s=localStorage.getItem(k);var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=(s==='light'||s==='dark')?s:(d?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark');document.documentElement.style.colorScheme=t;}catch(e){}})();
 `;
 
 function RootShell({ children }: { children: ReactNode }) {

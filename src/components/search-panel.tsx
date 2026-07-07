@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Clock, PenLine, Search, SearchX, Sparkles, TrendingUp, X } from "lucide-react";
 import { articles, getCategory, type Article } from "@/data/articles";
 
-const RECENT_KEY = "sprinter-it-recent-searches";
+const RECENT_KEY = "knowledge-hub-recent-searches";
 const MAX_RECENT = 5;
 
 const difficultyTone: Record<string, string> = {

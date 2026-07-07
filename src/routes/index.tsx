@@ -1,16 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, PlusCircle, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, BookOpen, PlusCircle } from "lucide-react";
 
 import { PageShell } from "@/components/page-shell";
 import { SearchPanel } from "@/components/search-panel";
+import { LogosStrip } from "@/components/home/logos-strip";
+import { Testimonial } from "@/components/home/testimonial";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sprinter IT Hub — Solve IT issues in minutes" },
-      { name: "description", content: "Search clear, step-by-step fixes for common IT problems before opening a ticket." },
-      { property: "og:title", content: "Sprinter IT Hub" },
-      { property: "og:description", content: "Search clear, step-by-step fixes for common IT problems before opening a ticket." },
+      { title: "Knowledge Hub — Enterprise knowledge, organized." },
+      { name: "description", content: "A premium home for your organization's operating knowledge. Search, capture, and publish enterprise documentation with editorial calm." },
+      { property: "og:title", content: "Knowledge Hub" },
+      { property: "og:description", content: "A premium home for your organization's operating knowledge." },
     ],
   }),
   component: Home,
@@ -19,142 +21,127 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <PageShell>
-      {/* Hero */}
-      <section className="px-4 pt-6 sm:px-6 sm:pt-8">
-        <div className="relative mx-auto max-w-7xl rounded-[2rem] bg-gradient-hero px-6 pt-16 pb-20 text-navy-foreground sm:px-12 md:px-16 md:pt-24 md:pb-28">
-          {/* decorative background layer */}
-          <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[2rem]" aria-hidden="true">
-            <svg className="absolute -right-32 -top-32 h-[34rem] w-[34rem] opacity-20" viewBox="0 0 400 400" fill="none" aria-hidden="true">
-              <circle cx="200" cy="200" r="180" stroke="currentColor" strokeDasharray="2 8" />
-              <circle cx="200" cy="200" r="140" stroke="currentColor" strokeDasharray="2 8" />
-              <circle cx="200" cy="200" r="100" stroke="currentColor" strokeDasharray="2 8" />
-              <circle cx="200" cy="200" r="60" stroke="currentColor" strokeDasharray="2 8" />
-            </svg>
-            <div className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-white/5 blur-3xl" aria-hidden="true" />
-          </div>
-
-          <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5" /> Internal knowledge base
-            </span>
-            <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight md:text-7xl">
-              Solve IT issues<br />
-              <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                before they slow you down.
-              </span>
-            </h1>
-            <p className="mx-auto mt-5 max-w-xl text-lg text-white/80">
-              Search clear, step-by-step fixes for the most common IT problems. Most issues are solved in under five minutes.
-            </p>
-
-            {/* Contained search component */}
-            <div className="mx-auto mt-10 w-full max-w-[760px]">
-              <SearchPanel variant="onDark" />
-            </div>
-
-
-
-
-            {/* stat strip */}
-            <div className="mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-6 border-t border-white/15 pt-8 text-left">
-              {[
-                { v: "5 min", l: "Avg. resolution" },
-                { v: "50+", l: "Common fixes" },
-                { v: "24/7", l: "Self-service" },
-              ].map((s) => (
-                <div key={s.l}>
-                  <div className="text-2xl font-bold md:text-3xl">{s.v}</div>
-                  <div className="mt-1 text-xs uppercase tracking-wider text-white/60">{s.l}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Primary CTA cards */}
-      <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {[
-            {
-              to: "/topics",
-              eyebrow: "Browse Knowledge Base",
-              title: "Browse Topics",
-              body: "Explore all IT documentation and troubleshooting guides.",
-              cta: "Browse Topics",
-              icon: BookOpen,
-              tone: "bg-primary-soft text-primary",
-            },
-            {
-              to: "/request",
-              eyebrow: "Need Something New?",
-              title: "Submit a Documentation Request",
-              body: "Can't find what you're looking for? Request new documentation for review.",
-              cta: "Submit Request",
-              icon: PlusCircle,
-              tone: "bg-mint/40 text-navy",
-            },
-          ].map((c) => (
-            <Link
-              key={c.to}
-              to={c.to}
-              className="group relative flex cursor-pointer flex-col overflow-hidden rounded-[1.5rem] border border-border bg-card p-8 shadow-card transition-all duration-300 ease-out hover:-translate-y-2 hover:border-primary/70 hover:shadow-glow focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 md:p-10"
-            >
-              {/* soft glow */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -inset-px rounded-[1.5rem] bg-gradient-to-br from-primary/10 via-transparent to-mint/20 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
-              />
-              {/* animated border accent */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-8 top-0 h-[2px] origin-left scale-x-0 rounded-full bg-gradient-to-r from-primary via-primary/60 to-transparent transition-transform duration-500 ease-out group-hover:scale-x-100"
-              />
-              <span
-                className={`relative inline-grid h-14 w-14 place-items-center rounded-2xl ${c.tone} transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-rotate-3`}
-              >
-                <c.icon className="h-7 w-7 transition-transform duration-300 ease-out group-hover:scale-110" />
-              </span>
-              <p className="relative mt-6 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{c.eyebrow}</p>
-              <h3 className="relative mt-2 text-2xl font-bold tracking-tight md:text-3xl">{c.title}</h3>
-              <p className="relative mt-3 text-muted-foreground">{c.body}</p>
-              <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary transition-all duration-300 ease-out group-hover:gap-3 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-card">
-                {c.cta}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Quick tips */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
-
-        <div className="rounded-[2rem] border border-border bg-gradient-soft p-8 md:p-12">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
-            <Zap className="h-4 w-4" /> Quick tips
-          </div>
-          <h3 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Try these before opening a ticket.</h3>
-          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
-            {[
-              { t: "Restart first", b: "A reboot fixes 70% of IT issues. Try it before anything else.", tone: "bg-primary-soft text-primary" },
-              { t: "Check the status page", b: "Some issues are company-wide outages we're already on.", tone: "bg-info/15 text-info-foreground" },
-              { t: "Use Self Service", b: "Install approved apps and updates without waiting on IT.", tone: "bg-success/20 text-success-foreground" },
-            ].map((tip) => (
-              <div
-                key={tip.t}
-                className="group rounded-2xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
-              >
-                <span className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${tip.tone}`}>
-                  Tip
-                </span>
-                <div className="mt-3 text-xl font-bold tracking-tight">{tip.t}</div>
-                <p className="mt-2 text-sm text-muted-foreground">{tip.b}</p>
+      {/* Hero — editorial split */}
+      <section className="relative">
+        <div className="mx-auto max-w-[1400px] px-6 pt-24 pb-32 md:px-10 md:pt-36 md:pb-40">
+          <div className="grid grid-cols-1 items-end gap-16 lg:grid-cols-12">
+            <div className="lg:col-span-8">
+              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                Enterprise knowledge platform
+              </p>
+              <h1 className="mt-8 font-display text-[46px] font-normal leading-[1.02] tracking-[-0.03em] text-foreground sm:text-[64px] md:text-[80px] lg:text-[92px]">
+                Your team's{" "}
+                <span className="highlight-yellow">operating knowledge</span>,
+                <br />
+                organized with{" "}
+                <span className="highlight-yellow">editorial calm</span>.
+              </h1>
+              <div className="mt-12 flex flex-wrap items-center gap-4">
+                <Link
+                  to="/topics"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-4 text-[15px] font-medium text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--primary)]/90"
+                >
+                  Browse the knowledge base
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/request"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#2A2018] bg-card px-7 py-4 text-[15px] font-medium text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:bg-surface-2"
+                >
+                  Capture knowledge
+                </Link>
               </div>
+            </div>
+
+            <div className="lg:col-span-4">
+              <p className="max-w-md text-[19px] leading-[1.55] text-secondary-foreground/80">
+                A premium, editorial workspace for enterprise documentation.
+                Search across everything your team knows, capture new procedures
+                in minutes, and publish with confidence.
+              </p>
+              <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8">
+                <div>
+                  <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Avg. resolution</dt>
+                  <dd className="mt-2 font-display text-2xl font-medium text-foreground">5 min</dd>
+                </div>
+                <div>
+                  <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Articles</dt>
+                  <dd className="mt-2 font-display text-2xl font-medium text-foreground">50+</dd>
+                </div>
+                <div>
+                  <dt className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Self-serve</dt>
+                  <dd className="mt-2 font-display text-2xl font-medium text-foreground">24/7</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          {/* Search band */}
+          <div className="mt-24 rounded-2xl border border-border bg-card p-6 shadow-card md:p-10">
+            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+              Search the knowledge base
+            </p>
+            <div className="mt-5">
+              <SearchPanel />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <LogosStrip />
+
+      {/* Two-up CTAs */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-[1400px] px-6 py-32 md:px-10 md:py-40">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {[
+              {
+                to: "/topics",
+                eyebrow: "Browse",
+                title: "Every topic, one library.",
+                body: "Explore all IT documentation and troubleshooting guides, organized by category.",
+                cta: "Browse topics",
+                icon: BookOpen,
+              },
+              {
+                to: "/request",
+                eyebrow: "Capture",
+                title: "Turn what you know into an article.",
+                body: "Write it, upload it, import it, or paste raw notes for AI to structure. Every path lands in the same review queue.",
+                cta: "Submit request",
+                icon: PlusCircle,
+              },
+            ].map((c) => (
+              <Link
+                key={c.to}
+                to={c.to}
+                className="group flex h-full flex-col rounded-2xl border border-border bg-card p-10 shadow-card transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-card-hover md:p-12"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-lg bg-primary text-primary-foreground">
+                    <c.icon className="h-5 w-5" strokeWidth={1.75} />
+                  </span>
+                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    {c.eyebrow}
+                  </p>
+                </div>
+                <h3 className="mt-8 font-display text-3xl font-medium leading-[1.1] tracking-tight text-foreground md:text-4xl">
+                  {c.title}
+                </h3>
+                <p className="mt-4 text-[16px] leading-relaxed text-muted-foreground">
+                  {c.body}
+                </p>
+                <span className="mt-10 inline-flex items-center gap-2 text-[14px] font-medium text-foreground transition-all group-hover:gap-3">
+                  {c.cta}
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
+
+      <Testimonial />
     </PageShell>
   );
 }

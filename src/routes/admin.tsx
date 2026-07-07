@@ -54,9 +54,9 @@ import { useInView } from "@/hooks/use-in-view";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Admin Dashboard — Sprinter IT Hub" },
+      { title: "Admin Dashboard — Knowledge Hub" },
       { name: "description", content: "Operational dashboard for managing IT documentation, analytics, and workflow." },
-      { property: "og:title", content: "Admin Dashboard — Sprinter IT Hub" },
+      { property: "og:title", content: "Admin Dashboard — Knowledge Hub" },
       { property: "og:description", content: "Operational dashboard for managing IT documentation, analytics, and workflow." },
     ],
   }),

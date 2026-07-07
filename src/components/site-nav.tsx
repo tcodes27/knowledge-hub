@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import { Activity } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -9,14 +8,23 @@ const links = [
   { to: "/admin", label: "Admin" },
 ];
 
-
+function Wordmark() {
+  return (
+    <Link to="/" className="group flex items-center gap-2.5">
+      <span className="grid h-9 w-9 place-items-center rounded-md bg-primary text-primary-foreground font-display text-lg font-medium leading-none">
+        K
+      </span>
+      <span className="text-[17px] font-medium tracking-tight text-foreground">
+        Knowledge Hub
+      </span>
+    </Link>
+  );
+}
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 8);
-    }
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -24,35 +32,30 @@ export function SiteNav() {
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b bg-background transition-shadow duration-300 ${
-        scrolled ? "border-border shadow-card" : "border-transparent"
+      className={`sticky top-0 z-40 border-b bg-background/85 backdrop-blur transition-colors duration-300 ${
+        scrolled ? "border-border" : "border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-6">
-        <Link to="/" className="group flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-primary text-primary-foreground shadow-card transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
-            <Activity className="h-5 w-5" strokeWidth={2.5} />
-          </span>
-          <span className="text-lg font-bold tracking-tight">Sprinter IT Hub</span>
-        </Link>
-        <nav className="hidden items-center gap-1 md:flex">
+      <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between gap-8 px-6 md:px-10">
+        <Wordmark />
+        <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/70 transition-colors duration-200 hover:bg-muted hover:text-foreground"
+              className="text-[14px] font-medium text-foreground/70 transition-colors duration-200 hover:text-foreground"
               activeOptions={{ exact: l.to === "/" }}
-              activeProps={{ className: "rounded-full px-3.5 py-1.5 text-sm font-medium bg-primary-soft text-primary" }}
+              activeProps={{ className: "text-[14px] font-medium text-foreground" }}
             >
               {l.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <ThemeToggle />
           <Link
             to="/request"
-            className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-card transition-all duration-200 hover:bg-primary/90 hover:shadow-card-hover hover:-translate-y-0.5 active:translate-y-0"
+            className="inline-flex items-center rounded-xl bg-primary px-6 py-3 text-[14px] font-medium text-primary-foreground transition-all duration-200 hover:bg-[var(--primary)]/90 hover:-translate-y-px"
           >
             Submit Request
           </Link>
@@ -64,17 +67,40 @@ export function SiteNav() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/60 bg-surface">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-10 text-sm text-muted-foreground md:flex-row md:items-center">
-        <div>
-          <div className="text-base font-bold tracking-tight text-foreground">Sprinter IT Hub</div>
-          <div className="mt-1">Helping employees solve IT issues, fast.</div>
+    <footer className="border-t border-border bg-surface-2">
+      <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
+          <div className="md:col-span-2">
+            <Wordmark />
+            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-muted-foreground">
+              A premium home for your organization's operating knowledge —
+              editorial, searchable, and calm.
+            </p>
+          </div>
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              Product
+            </p>
+            <ul className="mt-4 space-y-2.5 text-[14px]">
+              <li><Link to="/topics" className="text-foreground/75 hover:text-foreground">Topics</Link></li>
+              <li><Link to="/request" className="text-foreground/75 hover:text-foreground">Capture Knowledge</Link></li>
+              <li><Link to="/admin" className="text-foreground/75 hover:text-foreground">Admin</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              Company
+            </p>
+            <ul className="mt-4 space-y-2.5 text-[14px]">
+              <li className="text-foreground/75">About</li>
+              <li className="text-foreground/75">Security</li>
+              <li className="text-foreground/75">Contact</li>
+            </ul>
+          </div>
         </div>
-        <div className="flex gap-6">
-          <Link to="/topics" className="transition-colors hover:text-foreground">Topics</Link>
-          <Link to="/admin" className="transition-colors hover:text-foreground">Admin</Link>
-          <Link to="/request" className="transition-colors hover:text-foreground">Submit a request</Link>
-
+        <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-border pt-8 text-[13px] text-muted-foreground md:flex-row md:items-center">
+          <span>© {new Date().getFullYear()} Knowledge Hub. All rights reserved.</span>
+          <span className="uppercase tracking-[0.14em]">Editorial · Enterprise · Calm</span>
         </div>
       </div>
     </footer>
