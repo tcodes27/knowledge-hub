@@ -1,39 +1,19 @@
-## Goal
+## Diagnosis
 
-Remove em dashes (—) and en dashes (–) used as sentence separators across the entire project. Rewrite each sentence for natural punctuation (commas, periods, parentheses, colons, or restructure). Do not do blind character replacement.
+Your `.env.local` is correct and contains the Apps Script URL. The admin page still shows "Apps Script URL not configured" because **Vite only reads `.env` files at dev-server startup**. Since `.env.local` was created/updated while the dev server was already running, the current process still has `VITE_GOOGLE_APPS_SCRIPT_URL` as `undefined`, so `isAppsScriptConfigured` is `false` and the admin fetch short-circuits with that exact message.
 
-## Scope
+No code is broken. Nothing needs editing.
 
-158 dash occurrences across 25 files. Every file gets a pass; each sentence is rewritten in context.
+## Fix
 
-### User-facing UI copy
-- `src/routes/index.tsx`, `__root.tsx`, `admin.tsx`, `admin-preview.tsx`, `topics.tsx`, `topics.$slug.tsx`, `articles.$slug.tsx`, `request.tsx`
-- `src/components/site-nav.tsx`, `search-panel.tsx`, `article-sections.tsx`, `home/testimonial.tsx`, `knowledge-capture/file-uploader.tsx`
-- Includes headings, subheadings, buttons, nav labels, tooltips, empty states, toasts, form labels, placeholders, help text, error/success messages, page titles, meta descriptions.
+Restart the Vite dev server so it re-reads `.env.local`:
 
-### Content / data
-- `src/data/articles.ts` (58 occurrences), `src/data/sample-imported-article.ts` (article body copy)
+1. Call `code--restart_dev_server` (no code changes).
+2. Reload the `/admin` preview.
+3. Verify the "Apps Script URL not configured" banner disappears and the request actually hits your `/exec` endpoint.
 
-### Dev-facing / docs / comments
-- `README.md`, `AGENTS.md`, `QA_TEST_PLAN.md`, `docs/developer/environment.md`, `src/routes/README.md`
-- Code comments in `src/server.ts`, `src/services/googleAppsScript.ts`, `vite.config.ts`, `bunfig.toml`, `src/styles.css`
+If after restart the endpoint responds but returns an error (CORS, permissions, sheet not found, etc.), that's a separate Apps Script deployment issue and I'll diagnose from the network response, not from env config.
 
-## Rewrite rules
+## Files changed
 
-- `"A — B."` where B extends A → `"A. B."` or `"A, B."`
-- `"Title — Subtitle"` → `"Title | Subtitle"` (per user example) or `"Title: Subtitle"` where the colon reads more naturally
-- Parenthetical em-dash asides (`"X — note — Y"`) → parentheses `"X (note) Y"` or split into two sentences
-- En dashes used as ranges (e.g. `"9–5"`, `"2020–2024"`) → replace with the word "to" or a hyphen, whichever reads best per case (this counts as a sentence-flow rewrite, not blind swap)
-- Keep meaning, tone, and length roughly the same; keep it professional
-
-## Not changing
-
-- Functionality, routes, business logic, API calls, styling, component structure
-- ASCII hyphens (`-`) used inside identifiers, CSS class names, file paths, code, kebab-case, or compound modifiers ("real-time", "user-friendly"). Only rewrite ASCII hyphens if they are clearly acting as sentence separators in prose.
-- The user's own Apps Script URL and env values
-
-## Verification
-
-- `rg '[—–]' .` (excluding `node_modules`, `*.gen.ts`, `dist`, `.lovable`, lockfiles) returns zero matches
-- `bun run build` passes
-- Spot-check preview: home, admin, request, topics, article pages read naturally
+None.
