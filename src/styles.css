@@ -70,7 +70,7 @@
 :root {
   --radius: 0.75rem;
 
-  /* Knowledge Hub — editorial cream + dark brown, hospitality-inspired */
+  /* Knowledge Hub: editorial cream and dark brown, hospitality-inspired */
   --background: #FAFAF5;
   --foreground: #221A12;
 
@@ -105,7 +105,7 @@
 
   --grid-line: #ECE8DE;
 
-  /* Brand surfaces — warm dark for admin/hero */
+  /* Brand surfaces: warm dark for admin and hero */
   --navy: #24190F;
   --navy-foreground: #FAFAF5;
 
@@ -237,7 +237,7 @@
   }
 }
 
-/* Animations — calmer curves */
+/* Animations: calmer curves */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }

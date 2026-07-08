@@ -11,9 +11,9 @@ import { articles, categories, type Category } from "@/data/articles";
 export const Route = createFileRoute("/topics")({
   head: () => ({
     meta: [
-      { title: "Browse Topics — Knowledge Hub" },
+      { title: "Browse Topics | Knowledge Hub" },
       { name: "description", content: "Browse every IT help topic by category." },
-      { property: "og:title", content: "Browse Topics — Knowledge Hub" },
+      { property: "og:title", content: "Browse Topics | Knowledge Hub" },
       { property: "og:description", content: "Browse every IT help topic by category." },
     ],
   }),

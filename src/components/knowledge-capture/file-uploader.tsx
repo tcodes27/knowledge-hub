@@ -164,7 +164,7 @@ export function FileUploader() {
               );
             })}
           </ul>
-          <p className="text-xs text-muted-foreground">Available in Phase 2 — files are not uploaded yet.</p>
+          <p className="text-xs text-muted-foreground">Available in Phase 2. Files are not uploaded yet.</p>
         </div>
       )}
     </div>

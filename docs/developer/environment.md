@@ -11,7 +11,7 @@ environment without changing application code.
 | --- | --- | --- |
 | `VITE_GOOGLE_APPS_SCRIPT_URL` | Client (Vite) | Deployed Apps Script Web App endpoint that receives POST requests from the frontend. |
 
-The `VITE_` prefix is required — Vite only exposes variables starting with
+The `VITE_` prefix is required. Vite only exposes variables starting with
 `VITE_` to browser code via `import.meta.env`.
 
 ## Deploying the Apps Script Web App
@@ -23,7 +23,7 @@ The `VITE_` prefix is required — Vite only exposes variables starting with
    - **Execute as:** Me
    - **Who has access:** Anyone with the link (or restrict as required)
 5. Click **Deploy** and copy the generated `/exec` URL.
-6. Save the URL somewhere secure — anyone with this URL can call the
+6. Save the URL somewhere secure. Anyone with this URL can call the
    endpoint, so treat it as a shared credential.
 
 Any time the script is redeployed under a new version, the URL may change.
@@ -63,7 +63,7 @@ component fetches the endpoint directly.
     non-2xx responses, or network failures.
 - If `VITE_GOOGLE_APPS_SCRIPT_URL` is undefined the service short-circuits
   and returns `{ success: false, message: "Google Apps Script endpoint has
-  not been configured." }` — the UI never crashes.
+  not been configured." }`. The UI never crashes.
 
 Supported actions today:
 
@@ -75,13 +75,13 @@ Supported actions today:
 | `submitArticleFeedback(data)` | `submitArticleFeedback` |
 
 Add new actions by extending the `AppsScriptAction` union and exporting a
-new wrapper function — no other files need to change.
+new wrapper function. No other files need to change.
 
 ## Security notes
 
-- Never commit `.env.local` — the `*.local` rule already excludes it.
+- Never commit `.env.local`. The `*.local` rule already excludes it.
 - Never hardcode the endpoint URL in application code or documentation.
 - Treat the Web App URL as sensitive; rotate the deployment if it leaks.
 - Because the variable is `VITE_`-prefixed it ships to the browser bundle.
   Do not put private API keys or service-account credentials in this
-  variable — the Apps Script itself should enforce authorization.
+  variable. The Apps Script itself should enforce authorization.

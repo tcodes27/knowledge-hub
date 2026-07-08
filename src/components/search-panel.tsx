@@ -195,7 +195,7 @@ export function SearchPanel({
                 </div>
                 <div className="mt-4 text-lg font-bold text-foreground">No matching articles found.</div>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Try a different keyword — or ask for a new article.
+                  Try a different keyword, or ask for a new article.
                 </p>
                 <div className="mt-6 text-left">
                   <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary">

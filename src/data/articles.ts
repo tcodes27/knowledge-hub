@@ -5,7 +5,7 @@ export type SourceType = "manual" | "google-sheets" | "google-docs" | "pdf" | "c
 export type Step = {
   title: string;
   body: string;
-  // Extended (optional) — used by imported / structured content
+  // Extended (optional). Used by imported / structured content.
   stepNumber?: number;
   description?: string;
   details?: string;
@@ -46,7 +46,7 @@ export type Article = {
   views: number;
   featured?: boolean;
   steps: Step[];
-  // Extended (optional) — Phase 2 schema, backwards compatible
+  // Extended (optional). Phase 2 schema, backwards compatible.
   id?: string;
   status?: ArticleStatus;
   owner?: string;
@@ -92,7 +92,7 @@ export const articles: Article[] = [
     title: "Forgot your password",
     summary: "Reset your work password from any device.",
     preview: "Self-service reset using the passwords portal and MFA.",
-    overview: "You can reset your password yourself using the self-service portal — no ticket needed.",
+    overview: "You can reset your password yourself using the self-service portal. No ticket needed.",
     symptoms: ["Can't sign in to email", "'Incorrect password' error", "Account locked"],
     estTime: "3 min", difficulty: "Easy", lastUpdated: "2026-06-25", views: 3412, featured: true,
     steps: [
@@ -114,7 +114,7 @@ export const articles: Article[] = [
     estTime: "6 min", difficulty: "Easy", lastUpdated: "2026-06-24", views: 1120,
     steps: [
       S("Submit a reset request", "Open the IT portal and choose 'Reset MFA'. Verify your identity with your manager's approval."),
-      S("Wait for confirmation", "You'll get an email once your MFA is cleared — usually within 15 minutes."),
+      S("Wait for confirmation", "You'll get an email once your MFA is cleared, usually within 15 minutes."),
       S("Install the authenticator", "On your new phone, install Okta Verify (or Duo) from the App Store or Play Store."),
       S("Scan the QR code", "Sign in to any work app on your laptop. Scan the QR code with the authenticator."),
       S("Save backup codes", "Store the 10 backup codes in 1Password so you don't get locked out again."),
@@ -132,7 +132,7 @@ export const articles: Article[] = [
     steps: [
       S("Wait 15 minutes", "Most locks clear automatically after 15 minutes. Grab a coffee."),
       S("Try the unlock portal", "Go to unlock.company.com and verify with MFA to unlock immediately."),
-      S("Reset your password", "If unlock fails, reset your password — that also clears the lock."),
+      S("Reset your password", "If unlock fails, reset your password. That also clears the lock."),
       S("Sign in fresh", "Once unlocked, sign back in and make sure your password manager is updated."),
     ],
   },
@@ -142,14 +142,14 @@ export const articles: Article[] = [
     title: "Google Workspace login",
     summary: "Get into Gmail, Drive, and Calendar on day one.",
     preview: "Sign in once to unlock the full Workspace suite.",
-    overview: "Your Google Workspace account is created automatically — you just need to sign in once.",
+    overview: "Your Google Workspace account is created automatically. You just need to sign in once.",
     symptoms: ["Can't open Gmail", "'Account not found'", "Missing from a shared drive"],
     estTime: "4 min", difficulty: "Easy", lastUpdated: "2026-06-10", views: 812, featured: true,
     steps: [
       S("Go to mail.google.com", "Open Gmail in Chrome and click 'Sign in'."),
       S("Use your work email", "Enter your full work email address, then your password."),
       S("Approve MFA", "Approve the sign-in prompt on your phone."),
-      S("Request shared-drive access", "If a folder is missing, ask the owner to share it — IT can't grant access to team drives."),
+      S("Request shared-drive access", "If a folder is missing, ask the owner to share it. IT can't grant access to team drives."),
     ],
   },
   {
@@ -184,7 +184,7 @@ export const articles: Article[] = [
       S("Plug into a known-good charger", "Try a different USB-C cable and outlet. Wait 5 minutes before trying to power on."),
       S("Force a power cycle", "On a MacBook, hold the power button for 10 seconds, release, then press it again."),
       S("Reset the SMC (Intel Macs)", "For older Intel MacBooks, hold Control + Option + Shift + Power for 10 seconds."),
-      S("Check for external displays", "Unplug all accessories including monitors — a stuck external display can hide the login screen."),
+      S("Check for external displays", "Unplug all accessories including monitors. A stuck external display can hide the login screen."),
       S("Open a ticket", "If it still won't boot, submit a hardware ticket and we'll arrange a replacement."),
     ],
   },
@@ -218,7 +218,7 @@ export const articles: Article[] = [
       S("Restart your laptop", "A restart clears the input driver and fixes most stuck keyboards."),
       S("Unpair extra Bluetooth keyboards", "In System Settings → Bluetooth, remove keyboards you're not using."),
       S("Check keyboard layout", "System Settings → Keyboard → Input Sources. Make sure it's the layout you expect."),
-      S("Test in a new document", "Open TextEdit and try — if it works there, the problem was the app."),
+      S("Test in a new document", "Open TextEdit and try. If it works there, the problem was the app."),
     ],
   },
   {
@@ -232,7 +232,7 @@ export const articles: Article[] = [
     estTime: "4 min", difficulty: "Easy", lastUpdated: "2026-06-14", views: 260,
     steps: [
       S("Wipe the trackpad", "Use a slightly damp microfiber cloth. Dry it fully before using."),
-      S("Disconnect other mice", "Unpair Bluetooth mice temporarily — they can override gestures."),
+      S("Disconnect other mice", "Unpair Bluetooth mice temporarily. They can override gestures."),
       S("Reset trackpad settings", "System Settings → Trackpad. Toggle each option off and back on."),
       S("Restart", "A restart clears the trackpad driver if things still feel off."),
     ],
@@ -249,8 +249,8 @@ export const articles: Article[] = [
     steps: [
       S("Unplug the dock's power", "Unplug the dock from power for 30 seconds, then plug back in."),
       S("Reconnect to laptop", "Plug the USB-C cable from the dock into your laptop."),
-      S("Allow the USB accessory", "macOS may prompt to allow the accessory — click Allow."),
-      S("Update dock firmware", "Check the dock vendor's site for a firmware updater — run it once."),
+      S("Allow the USB accessory", "macOS may prompt to allow the accessory. Click Allow."),
+      S("Update dock firmware", "Check the dock vendor's site for a firmware updater. Run it once."),
       S("Try a direct connection", "If problems persist, plug the monitor directly into your laptop to isolate the dock."),
     ],
   },
@@ -261,7 +261,7 @@ export const articles: Article[] = [
     category: "networking",
     title: "Wi-Fi keeps disconnecting",
     summary: "Reconnect your Mac to the office network reliably.",
-    preview: "Forget the network and rejoin — the classic fix.",
+    preview: "Forget the network and rejoin. The classic fix.",
     overview: "If your Mac can see the network but won't stay connected, the fix is usually to forget and rejoin.",
     symptoms: ["Wi-Fi icon shows an exclamation mark", "Pages won't load", "Connected but no internet"],
     estTime: "5 min", difficulty: "Easy", lastUpdated: "2026-06-12", views: 2284, featured: true,
@@ -296,7 +296,7 @@ export const articles: Article[] = [
     title: "Slow internet",
     summary: "Speed up a sluggish connection.",
     preview: "Test speed, switch bands, and reboot the router.",
-    overview: "Slow internet has a handful of common causes — most take under 5 minutes to fix.",
+    overview: "Slow internet has a handful of common causes. Most take under 5 minutes to fix.",
     symptoms: ["Video calls buffering", "Downloads crawling", "Wi-Fi bars low"],
     estTime: "8 min", difficulty: "Easy", lastUpdated: "2026-06-18", views: 730,
     steps: [
@@ -304,7 +304,7 @@ export const articles: Article[] = [
       S("Switch to 5 GHz", "In Wi-Fi settings, pick the '-5G' version of your network. It's faster at close range."),
       S("Reboot your router", "Unplug the router for 30 seconds, then plug back in. Wait 2 minutes to reconnect."),
       S("Move closer", "Walls kill Wi-Fi. Move within 20 feet of the router if possible."),
-      S("Pause big downloads", "Cloud backups and OS updates can hog bandwidth — pause them during meetings."),
+      S("Pause big downloads", "Cloud backups and OS updates can hog bandwidth. Pause them during meetings."),
     ],
   },
   {
@@ -313,7 +313,7 @@ export const articles: Article[] = [
     title: "Network printer offline",
     summary: "Reconnect to a network printer that dropped off.",
     preview: "Verify Wi-Fi network and re-add the printer.",
-    overview: "Office printers live on the internal network — VPN and guest Wi-Fi can't reach them.",
+    overview: "Office printers live on the internal network. VPN and guest Wi-Fi can't reach them.",
     symptoms: ["Printer greyed out", "Jobs stuck in queue", "'Offline' status"],
     estTime: "6 min", difficulty: "Easy", lastUpdated: "2026-06-08", views: 410,
     steps: [
@@ -329,12 +329,12 @@ export const articles: Article[] = [
     title: "Office network issues",
     summary: "Diagnose a broader office network outage.",
     preview: "Check the status page before troubleshooting your laptop.",
-    overview: "If multiple people can't connect, it's an outage — no fix on your end will help.",
+    overview: "If multiple people can't connect, it's an outage. No fix on your end will help.",
     symptoms: ["Whole team can't reach a service", "Everything slow, everywhere", "Wi-Fi keeps dropping for everyone"],
     estTime: "3 min", difficulty: "Easy", lastUpdated: "2026-06-16", views: 220,
     steps: [
       S("Check the status page", "Go to status.company.com. Active incidents will be listed at the top."),
-      S("Ask in #it-help", "Post a quick note in Slack — if others are affected, we're on it."),
+      S("Ask in #it-help", "Post a quick note in Slack. If others are affected, we're on it."),
       S("Use your phone hotspot", "For urgent work, tether to your phone until the office network is back."),
       S("Watch for updates", "IT posts progress every 15 minutes in #it-announcements during incidents."),
     ],
@@ -353,7 +353,7 @@ export const articles: Article[] = [
     steps: [
       S("Use the workspace URL", "Open company.slack.com in your browser instead of the app."),
       S("Sign in with SSO", "Click 'Sign in with Google' (or your company's SSO option)."),
-      S("Reopen the Slack app", "Once you're in via the browser, open the Slack app — it should auto-connect."),
+      S("Reopen the Slack app", "Once you're in via the browser, open the Slack app. It should auto-connect."),
       S("Clear Slack's cache", "In the Slack app menu, choose Help → Troubleshooting → Clear Cache and Restart."),
     ],
   },
@@ -402,9 +402,9 @@ export const articles: Article[] = [
     estTime: "6 min", difficulty: "Easy", lastUpdated: "2026-06-21", views: 260,
     steps: [
       S("Try Incognito mode", "Open an Incognito window (Cmd+Shift+N) and load the site. If it works, extensions are to blame."),
-      S("Disable extensions", "chrome://extensions — turn them all off. Re-enable one at a time to find the culprit."),
+      S("Disable extensions", "chrome://extensions. Turn them all off. Re-enable one at a time to find the culprit."),
       S("Clear cache", "Settings → Privacy → Clear browsing data → 'Cached images and files'."),
-      S("Update Chrome", "chrome://settings/help — install the latest update and relaunch."),
+      S("Update Chrome", "chrome://settings/help. Install the latest update and relaunch."),
       S("Reset Chrome", "Settings → Reset settings → 'Restore settings to their original defaults' as a last resort."),
     ],
   },
@@ -413,14 +413,14 @@ export const articles: Article[] = [
     category: "applications",
     title: "Install approved software",
     summary: "Install company-approved apps without admin rights.",
-    preview: "Use Self Service — no admin password needed.",
-    overview: "You can install any approved app yourself from Self Service — no IT needed.",
+    preview: "Use Self Service. No admin password needed.",
+    overview: "You can install any approved app yourself from Self Service. No IT needed.",
     symptoms: ["Need a new app", "'Admin password required' error", "App not in App Store"],
     estTime: "5 min", difficulty: "Easy", lastUpdated: "2026-06-15", views: 760,
     steps: [
       S("Open Self Service", "Find the Self Service app in your Applications folder or via Spotlight."),
       S("Search for the app", "Type the app name in the search bar at the top."),
-      S("Click 'Install'", "Installs run in the background and usually take 1–3 minutes."),
+      S("Click 'Install'", "Installs run in the background and usually take 1 to 3 minutes."),
       S("Request a new app", "If the app isn't listed, submit a documentation request and we'll review it."),
     ],
   },
@@ -455,9 +455,9 @@ export const articles: Article[] = [
     steps: [
       S("Check the sender's domain", "Hover over the sender name. If it's not from @company.com, be suspicious."),
       S("Look for urgency", "Phishing loves 'urgent', 'immediate', and 'within 24 hours'. Slow down."),
-      S("Don't click — hover", "Hover over links to see the real URL. If it doesn't match, don't click."),
+      S("Don't click, hover", "Hover over links to see the real URL. If it doesn't match, don't click."),
       S("Report with the plugin", "Click the 'Report Phishing' button in Gmail. Never forward to friends."),
-      S("Delete the email", "Once reported, delete it. Don't reply — even 'unsubscribe' confirms your address."),
+      S("Delete the email", "Once reported, delete it. Don't reply. Even 'unsubscribe' confirms your address."),
     ],
   },
   {
@@ -490,7 +490,7 @@ export const articles: Article[] = [
       S("Install 1Password", "Download 1Password from Self Service and sign in with SSO."),
       S("Generate strong passwords", "Let 1Password create 20-character passwords for every new account."),
       S("Never reuse passwords", "One breach shouldn't unlock everything. Unique per site."),
-      S("Enable MFA everywhere", "Turn on MFA for every account that supports it — especially email and banking."),
+      S("Enable MFA everywhere", "Turn on MFA for every account that supports it, especially email and banking."),
     ],
   },
   {
@@ -498,7 +498,7 @@ export const articles: Article[] = [
     category: "security",
     title: "Report a security incident",
     summary: "What to do if you clicked a bad link or lost a device.",
-    preview: "Act fast — the first hour matters most.",
+    preview: "Act fast. The first hour matters most.",
     overview: "Reporting early is always the right call. There's no penalty for mistakes.",
     symptoms: ["Clicked a phishing link", "Lost or stolen laptop", "Suspicious activity on your account"],
     estTime: "10 min", difficulty: "Medium", lastUpdated: "2026-06-05", views: 190,
@@ -535,7 +535,7 @@ export const articles: Article[] = [
     title: "Activate Google Workspace",
     summary: "Turn on your Gmail, Drive, and Calendar on day one.",
     preview: "One sign-in unlocks the whole Workspace suite.",
-    overview: "Your Google account is pre-created — you just need to activate it.",
+    overview: "Your Google account is pre-created. You just need to activate it.",
     symptoms: ["First-day setup", "Gmail asking to accept terms", "Calendar empty"],
     estTime: "5 min", difficulty: "Easy", lastUpdated: "2026-06-28", views: 620,
     steps: [
@@ -590,7 +590,7 @@ export const articles: Article[] = [
       S("Install the Gmail app", "Download Gmail from the App Store or Play Store."),
       S("Add your work account", "Open Gmail → tap avatar → 'Add another account' → Google."),
       S("Sign in with SSO", "Enter your work email. It redirects to Okta for sign-in."),
-      S("Approve device management", "Approve any prompts to install a work profile — this keeps company data separate."),
+      S("Approve device management", "Approve any prompts to install a work profile. This keeps company data separate."),
     ],
   },
   {
@@ -598,12 +598,12 @@ export const articles: Article[] = [
     category: "new-employee",
     title: "Complete device enrollment",
     summary: "Enroll your laptop in MDM so IT can support it.",
-    preview: "Approve the management profile — takes 30 seconds.",
+    preview: "Approve the management profile. Takes 30 seconds.",
     overview: "Device enrollment gives IT the ability to push updates and help remotely.",
     symptoms: ["Yellow banner in Settings", "Prompted to enroll", "First-day setup"],
     estTime: "4 min", difficulty: "Easy", lastUpdated: "2026-06-25", views: 280,
     steps: [
-      S("Open the enrollment link", "Click the link in your welcome email — it opens System Settings."),
+      S("Open the enrollment link", "Click the link in your welcome email. It opens System Settings."),
       S("Install the profile", "Click 'Install' on the management profile prompt. Enter your password."),
       S("Verify enrollment", "System Settings → Privacy & Security → Profiles. You should see 'Company MDM'."),
     ],
@@ -638,7 +638,7 @@ export const articles: Article[] = [
     estTime: "5 min", difficulty: "Easy", lastUpdated: "2026-06-23", views: 220,
     steps: [
       S("Connect for internal tools", "Turn on VPN before accessing wiki, staging, or internal apps."),
-      S("Disconnect for streaming", "Turn it off for video streaming — you'll get better speeds."),
+      S("Disconnect for streaming", "Turn it off for video streaming. You'll get better speeds."),
       S("Always use it on public Wi-Fi", "Cafés and airports: VPN on, always."),
       S("Reconnect after sleep", "The VPN drops when your laptop sleeps. Reconnect after opening the lid."),
     ],
@@ -649,13 +649,13 @@ export const articles: Article[] = [
     title: "Connect to company resources",
     summary: "Reach internal tools from home.",
     preview: "The path from home laptop to internal wiki.",
-    overview: "Internal tools are gated behind VPN or Okta — here's how to reach each.",
+    overview: "Internal tools are gated behind VPN or Okta. Here's how to reach each.",
     symptoms: ["Can't reach wiki from home", "Staging site returns 403", "Internal dashboard blank"],
     estTime: "6 min", difficulty: "Easy", lastUpdated: "2026-06-22", views: 190,
     steps: [
       S("Sign in to Okta", "Start at okta.company.com. Most tools are one click from your dashboard."),
       S("Connect the VPN", "For wiki and staging, connect the VPN first."),
-      S("Bookmark from Okta", "Bookmark tools from your Okta dashboard, not raw URLs — the Okta link handles auth."),
+      S("Bookmark from Okta", "Bookmark tools from your Okta dashboard, not raw URLs. The Okta link handles auth."),
       S("Ask about missing apps", "If a tool isn't in Okta, message #it-help to get it added."),
     ],
   },
@@ -672,7 +672,7 @@ export const articles: Article[] = [
       S("Raise the camera to eye level", "Stack books or use a laptop stand. Never film from below."),
       S("Face a light source", "Sit facing a window or lamp. Backlight silhouettes you."),
       S("Use a wired headset", "Wired > Bluetooth for calls. Less latency and no echo."),
-      S("Mute when not speaking", "Use the mute button — even at home you'll get random noises."),
+      S("Mute when not speaking", "Use the mute button. Even at home you'll get random noises."),
     ],
   },
   {
@@ -680,7 +680,7 @@ export const articles: Article[] = [
     category: "remote-work",
     title: "Home office setup",
     summary: "Build an ergonomic and productive workspace.",
-    preview: "Chair, screen, keyboard — the ergonomics essentials.",
+    preview: "Chair, screen, keyboard. The ergonomics essentials.",
     overview: "A few ergonomic principles prevent long-term pain.",
     symptoms: ["Back pain", "Wrist pain", "Eye strain"],
     estTime: "10 min", difficulty: "Easy", lastUpdated: "2026-06-19", views: 340,
@@ -689,7 +689,7 @@ export const articles: Article[] = [
       S("Position your screen", "Top of screen at eye level. About an arm's length away."),
       S("Use an external keyboard", "Typing on a laptop keyboard for hours will hurt your wrists."),
       S("Take movement breaks", "Stand up every 30 minutes. Set a timer if you forget."),
-      S("Request equipment", "IT reimburses monitors, keyboards, and chairs — submit a request."),
+      S("Request equipment", "IT reimburses monitors, keyboards, and chairs. Submit a request."),
     ],
   },
 
@@ -699,7 +699,7 @@ export const articles: Article[] = [
     category: "hardware",
     title: "Printer showing offline",
     summary: "Bring an office printer back online from your laptop.",
-    preview: "Remove and re-add — it works nearly every time.",
+    preview: "Remove and re-add. It works nearly every time.",
     overview: "An offline printer usually just needs to be re-added or woken up.",
     symptoms: ["Printer status says 'Offline'", "Jobs stuck in queue", "Can't find printer in list"],
     estTime: "6 min", difficulty: "Easy", lastUpdated: "2026-06-05", views: 540,
@@ -782,7 +782,7 @@ export const articles: Article[] = [
     title: "Request Adobe Acrobat",
     summary: "Get an Adobe Acrobat Pro license.",
     preview: "Managers approve, then install from Self Service.",
-    overview: "Adobe licenses are paid seats — your manager approves the request first.",
+    overview: "Adobe licenses are paid seats. Your manager approves the request first.",
     symptoms: ["Need to edit PDFs", "Need to sign PDFs", "PDF forms don't work"],
     estTime: "10 min", difficulty: "Easy", lastUpdated: "2026-06-18", views: 210,
     steps: [
@@ -798,8 +798,8 @@ export const articles: Article[] = [
     category: "software-requests",
     title: "Request Figma",
     summary: "Get a Figma seat on the company plan.",
-    preview: "Join the workspace via SSO — no license request needed for viewer.",
-    overview: "Figma viewer seats are free — you can join anytime. Editor seats need approval.",
+    preview: "Join the workspace via SSO. No license request needed for viewer.",
+    overview: "Figma viewer seats are free. You can join anytime. Editor seats need approval.",
     symptoms: ["Need to edit designs", "Need to view design files", "Working with the design team"],
     estTime: "5 min", difficulty: "Easy", lastUpdated: "2026-06-17", views: 240,
     steps: [
@@ -846,14 +846,14 @@ export const articles: Article[] = [
     category: "software-requests",
     title: "Request new software",
     summary: "Get an app that isn't in Self Service.",
-    preview: "Security review + purchase — usually 3–5 days.",
+    preview: "Security review and purchase, usually 3 to 5 days.",
     overview: "New apps go through a light security review before being purchased.",
     symptoms: ["App not in Self Service", "Need a paid SaaS tool", "Team is asking about a new tool"],
     estTime: "15 min", difficulty: "Medium", lastUpdated: "2026-06-14", views: 140,
     steps: [
-      S("Search Self Service first", "The app may already be approved — search before requesting."),
+      S("Search Self Service first", "The app may already be approved. Search before requesting."),
       S("Submit a request", "IT portal → 'New Software'. Include the vendor, use case, and manager approval."),
-      S("Security review", "Security reviews new SaaS tools for compliance. Takes 2–3 days."),
+      S("Security review", "Security reviews new SaaS tools for compliance. Takes 2 to 3 days."),
       S("Purchase and rollout", "Once approved, IT purchases the license and adds it to Self Service."),
     ],
   },
@@ -871,7 +871,7 @@ export const articles: Article[] = [
     steps: [
       S("Read the policy", "The full policy lives at wiki.company.com/aup."),
       S("No unlicensed software", "Only install apps from Self Service or the App Store."),
-      S("No sharing accounts", "Never share your work login — not even with family."),
+      S("No sharing accounts", "Never share your work login. Not even with family."),
       S("Report incidents", "If something feels off, email security@company.com."),
     ],
   },
@@ -887,7 +887,7 @@ export const articles: Article[] = [
     steps: [
       S("Devices must be encrypted", "FileVault must be on. IT verifies this weekly."),
       S("Install updates monthly", "OS updates must be installed within 30 days of release."),
-      S("Return on offboarding", "All hardware returns on your last day — IT ships a prepaid box."),
+      S("Return on offboarding", "All hardware returns on your last day. IT ships a prepaid box."),
       S("Report loss immediately", "Lost or stolen devices must be reported within 4 hours."),
     ],
   },
@@ -903,7 +903,7 @@ export const articles: Article[] = [
     steps: [
       S("Read the full policy", "Full policy at wiki.company.com/remote-work."),
       S("Notify HR for extended travel", "Working from another country for 30+ days needs HR approval."),
-      S("Set a permanent address", "Your registered address determines payroll — keep it current in Workday."),
+      S("Set a permanent address", "Your registered address determines payroll. Keep it current in Workday."),
       S("Attend core-hours meetings", "You must be reachable during your team's core hours."),
     ],
   },
@@ -919,8 +919,8 @@ export const articles: Article[] = [
     steps: [
       S("Minimum 12 characters", "Passwords must be at least 12 characters with mixed types."),
       S("No reuse of last 10", "The system remembers your last 10 passwords."),
-      S("Rotate every 365 days", "Only if MFA is enabled — otherwise every 90."),
-      S("MFA required on all apps", "SSO enforces MFA — no exceptions."),
+      S("Rotate every 365 days", "Only if MFA is enabled. Otherwise every 90."),
+      S("MFA required on all apps", "SSO enforces MFA. No exceptions."),
     ],
   },
   {
@@ -952,7 +952,7 @@ export const articles: Article[] = [
     symptoms: ["First time contacting IT", "Not sure what info to include", "Recurring issue"],
     estTime: "5 min", difficulty: "Easy", lastUpdated: "2026-06-29", views: 640, featured: true,
     steps: [
-      S("Try the knowledge base first", "Search this hub — most issues have step-by-step fixes."),
+      S("Try the knowledge base first", "Search this hub. Most issues have step-by-step fixes."),
       S("Open the IT portal", "Go to it.company.com and click 'New Ticket'."),
       S("Write a clear title", "Not 'help', but 'VPN won't connect on MacBook, error XYZ'."),
       S("Include reproduction steps", "What you did, what happened, what you expected."),
@@ -964,8 +964,8 @@ export const articles: Article[] = [
     category: "procedures",
     title: "Emergency support process",
     summary: "Get urgent help outside normal channels.",
-    preview: "P1 issues use the on-call pager — not tickets.",
-    overview: "For business-critical issues, use the on-call channels — not the ticket queue.",
+    preview: "P1 issues use the on-call pager, not tickets.",
+    overview: "For business-critical issues, use the on-call channels, not the ticket queue.",
     symptoms: ["Site is down", "Production alert", "Security incident in progress"],
     estTime: "5 min", difficulty: "Medium", lastUpdated: "2026-06-28", views: 210,
     steps: [
@@ -986,7 +986,7 @@ export const articles: Article[] = [
     estTime: "3 min", difficulty: "Easy", lastUpdated: "2026-06-27", views: 120,
     steps: [
       S("Try the knowledge base", "Most issues have a fix here that works 24/7."),
-      S("File a ticket anyway", "Non-urgent tickets queue overnight — first team in picks them up."),
+      S("File a ticket anyway", "Non-urgent tickets queue overnight. First team in picks them up."),
       S("Use on-call for urgent", "Only page on-call for business-critical issues."),
     ],
   },
@@ -995,13 +995,13 @@ export const articles: Article[] = [
     category: "procedures",
     title: "Equipment returns",
     summary: "Return laptops and accessories when leaving or upgrading.",
-    preview: "IT ships a prepaid box — pack and drop off.",
+    preview: "IT ships a prepaid box. Pack and drop off.",
     overview: "All company hardware must be returned within 5 business days.",
     symptoms: ["Leaving the company", "Upgrading to a new laptop", "Returning temporary equipment"],
     estTime: "15 min", difficulty: "Easy", lastUpdated: "2026-06-26", views: 130,
     steps: [
       S("Wait for the return kit", "IT ships a prepaid box within 24 hours of your last day."),
-      S("Back up personal files", "Save any personal files before you sign out — nothing survives the wipe."),
+      S("Back up personal files", "Save any personal files before you sign out. Nothing survives the wipe."),
       S("Sign out of iCloud", "Turn off Find My and sign out of your Apple ID."),
       S("Pack and drop off", "Include the charger and any accessories. Drop at any FedEx location."),
     ],
@@ -1012,11 +1012,11 @@ export const articles: Article[] = [
     title: "Hardware replacement",
     summary: "Get faulty hardware replaced.",
     preview: "Warranty coverage handles most swaps in under a week.",
-    overview: "Most hardware is under warranty for 3 years. Replacements ship in 3–5 business days.",
+    overview: "Most hardware is under warranty for 3 years. Replacements ship in 3 to 5 business days.",
     symptoms: ["Faulty keyboard", "Cracked screen", "Battery won't hold charge"],
     estTime: "10 min", difficulty: "Medium", lastUpdated: "2026-06-25", views: 160,
     steps: [
-      S("Diagnose the issue", "Confirm it's a hardware problem — try a restart and safe boot first."),
+      S("Diagnose the issue", "Confirm it's a hardware problem. Try a restart and safe boot first."),
       S("Submit a hardware ticket", "IT portal → Hardware → Replacement. Include photos if visible."),
       S("Back up your data", "Time Machine backup or cloud sync before the swap."),
       S("Book a swap appointment", "On-site teams do swaps in 20 minutes. Remote gets a shipped replacement."),

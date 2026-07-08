@@ -73,7 +73,7 @@ export function SiteFooter() {
           <div className="md:col-span-2">
             <Wordmark />
             <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-muted-foreground">
-              A premium home for your organization's operating knowledge —
+              A premium home for your organization's operating knowledge.
               editorial, searchable, and calm.
             </p>
           </div>

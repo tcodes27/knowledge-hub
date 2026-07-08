@@ -13,7 +13,7 @@ import { ArticleView, ArticlePreviewBanner } from "./articles.$slug";
 export const Route = createFileRoute("/admin-preview")({
   head: () => ({
     meta: [
-      { title: "Article preview — Knowledge Hub Admin" },
+      { title: "Article preview | Knowledge Hub Admin" },
       { name: "description", content: "Preview imported documentation before publishing." },
       { name: "robots", content: "noindex" },
     ],

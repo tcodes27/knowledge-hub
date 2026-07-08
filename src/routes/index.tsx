@@ -9,7 +9,7 @@ import { Testimonial } from "@/components/home/testimonial";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Knowledge Hub — Enterprise knowledge, organized." },
+      { title: "Knowledge Hub | Enterprise knowledge, organized." },
       { name: "description", content: "A premium home for your organization's operating knowledge. Search, capture, and publish enterprise documentation with editorial calm." },
       { property: "og:title", content: "Knowledge Hub" },
       { property: "og:description", content: "A premium home for your organization's operating knowledge." },
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <PageShell>
-      {/* Hero — editorial split */}
+      {/* Hero: editorial split */}
       <section className="relative">
         <div className="mx-auto max-w-[1400px] px-6 pt-24 pb-32 md:px-10 md:pt-36 md:pb-40">
           <div className="grid grid-cols-1 items-end gap-16 lg:grid-cols-12">

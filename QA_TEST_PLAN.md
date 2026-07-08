@@ -1,4 +1,4 @@
-# Sprinter IT Hub — QA Test Plan
+# Sprinter IT Hub | QA Test Plan
 
 **Project:** Sprinter IT Hub
 **Application Type:** Enterprise IT Knowledge Management Platform
@@ -11,7 +11,7 @@
 
 ## 1. QA Overview
 
-This document defines the quality assurance strategy for **Sprinter IT Hub**, an internal knowledge management platform that helps employees self-serve common IT issues before opening a support ticket. The QA plan validates functional correctness, visual consistency, accessibility, responsive behavior, and production readiness across the full user journey — from the homepage search to the admin dashboard.
+This document defines the quality assurance strategy for **Sprinter IT Hub**, an internal knowledge management platform that helps employees self-serve common IT issues before opening a support ticket. The QA plan validates functional correctness, visual consistency, accessibility, responsive behavior, and production readiness across the full user journey, from the homepage search to the admin dashboard.
 
 **Objectives**
 
@@ -44,7 +44,7 @@ This document defines the quality assurance strategy for **Sprinter IT Hub**, an
 |------|-------|
 | Local dev server | `http://localhost:8080` (Vite) |
 | Preview URL | Lovable preview environment |
-| Production URL | *(placeholder — add after deploy)* |
+| Production URL | *(placeholder, add after deploy)* |
 | Node runtime | 20.x |
 | Package manager | bun |
 | Browsers | Chrome 126+, Safari 17+, Firefox 127+, Edge 126+ |
@@ -72,9 +72,9 @@ This document defines the quality assurance strategy for **Sprinter IT Hub**, an
 
 **Out of Scope**
 
-- Backend integrations (Zendesk, Make.com, Google Sheets) — mocked by design
+- Backend integrations (Zendesk, Make.com, Google Sheets). Mocked by design.
 - Authentication and role-based access control
-- Real analytics data — dashboard values are illustrative
+- Real analytics data. Dashboard values are illustrative.
 - Load, performance, and penetration testing
 
 ---
@@ -109,8 +109,8 @@ Validates that visual design matches the Sprinter brand system.
 | UI-002 | Color tokens | Primary purple, surface, and text tokens applied | No hardcoded hex colors bleeding through | Not Started | High |
 | UI-003 | Spacing | Card padding, section gaps consistent | Layout matches design across pages | Not Started | Medium |
 | UI-004 | Shadows | Card + hover shadows render softly | No harsh or missing shadows | Not Started | Medium |
-| UI-005 | Radii | 12–16px border radii on cards and buttons | Consistent rounded corners | Not Started | Medium |
-| UI-006 | Hover states | Cards lift, glow, and animate on hover | Smooth 200–300ms transitions | Not Started | High |
+| UI-005 | Radii | 12-16px border radii on cards and buttons | Consistent rounded corners | Not Started | Medium |
+| UI-006 | Hover states | Cards lift, glow, and animate on hover | Smooth 200-300ms transitions | Not Started | High |
 | UI-007 | Active states | Buttons compress subtly on click | Visible tactile feedback | Not Started | Low |
 | UI-008 | Animations | Fade-in and scale animations play smoothly | No jank or layout shift | Not Started | Medium |
 | UI-009 | Iconography | Lucide icons render at correct stroke width | Icons align to text baseline | Not Started | Low |
@@ -141,10 +141,10 @@ Validates that visual design matches the Sprinter brand system.
 
 | Test ID | Feature | Scenario | Steps | Expected Result | Status | Priority |
 |---------|---------|----------|-------|-----------------|--------|----------|
-| SRCH-001 | Homepage search | Empty state shows Popular Searches | 1. Focus homepage search input | 4–5 popular items displayed | Not Started | High |
+| SRCH-001 | Homepage search | Empty state shows Popular Searches | 1. Focus homepage search input | 4-5 popular items displayed | Not Started | High |
 | SRCH-002 | Homepage search | Query returns relevant articles | 1. Type "vpn" | VPN-related articles listed | Not Started | High |
 | SRCH-003 | Homepage search | Results contained inside search component | 1. Type query 2. Inspect layout | Results never overflow hero section | Not Started | High |
-| SRCH-004 | Homepage search | Results scroll internally at max height | 1. Type broad query returning many results | Panel scrolls internally, capped ~360–420px | Not Started | High |
+| SRCH-004 | Homepage search | Results scroll internally at max height | 1. Type broad query returning many results | Panel scrolls internally, capped around 360-420px | Not Started | High |
 | SRCH-005 | Homepage search | Keywords highlighted in results | 1. Type "password" | Matching text highlighted | Not Started | Medium |
 | SRCH-006 | Homepage search | Empty results state | 1. Type "asdfghjk" | "No results" empty state renders | Not Started | Medium |
 | SRCH-007 | Homepage search | Keyboard navigation | 1. Type query 2. Use ↑/↓/Enter | Arrow keys move focus, Enter opens article | Not Started | Medium |
@@ -275,7 +275,7 @@ Validates that visual design matches the Sprinter brand system.
 |---------|------|----------|-----------------|--------|----------|
 | CNT-001 | Placeholder copy | No "Lorem ipsum" or TODO copy | Every string is real product copy | Not Started | High |
 | CNT-002 | Demo content | No test / demo article names | All articles look production-grade | Not Started | High |
-| CNT-003 | Categories | Every category has 4–6 real articles | No empty categories | Not Started | High |
+| CNT-003 | Categories | Every category has 4-6 real articles | No empty categories | Not Started | High |
 | CNT-004 | Slugs | All article slugs resolve | No broken article routes | Not Started | High |
 | CNT-005 | Metadata | Every article has title, summary, time, difficulty | No missing metadata | Not Started | Medium |
 | CNT-006 | SEO | Each route sets unique title + description | Head metadata unique per page | Not Started | Medium |
@@ -344,10 +344,10 @@ Run after any code change touching navigation, search, modals, articles, admin, 
 
 | ID | Area | Description | Impact | Resolution |
 |----|------|-------------|--------|------------|
-| KI-001 | Admin analytics | KPI values and charts are illustrative mock data | Low — intentional for portfolio demo | Replace with real analytics when backend is integrated |
-| KI-002 | Request form | Submissions are not persisted to a backend | Low — confirmation UX is functional | Wire to Make.com / Google Sheets per Operational Workflow concept |
+| KI-001 | Admin analytics | KPI values and charts are illustrative mock data | Low. Intentional for portfolio demo. | Replace with real analytics when backend is integrated |
+| KI-002 | Request form | Submissions are not persisted to a backend | Low. Confirmation UX is functional. | Wire to Make.com / Google Sheets per Operational Workflow concept |
 | KI-003 | Zendesk CTA | "Still Need Help" links to a placeholder ticket URL | Low | Point to real Zendesk instance on deploy |
-| KI-004 | Authentication | No auth layer present | N/A — out of scope for v2 | Add SSO for production rollout |
+| KI-004 | Authentication | No auth layer present | N/A. Out of scope for v2. | Add SSO for production rollout |
 
 ---
 

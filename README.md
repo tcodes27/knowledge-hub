@@ -30,7 +30,7 @@ The platform is designed to:
 - **Reduce repetitive IT support requests** by turning every ticket into reusable, published knowledge.
 - **Improve employee self-service** with fast, editorial search and interactive walkthroughs.
 - **Automate documentation workflows** using Google Apps Script as the orchestration layer and Google Sheets as the structured datastore.
-- **Establish a single source of truth** for operational knowledge — searchable, versioned, and governed.
+- **Establish a single source of truth** for operational knowledge. Searchable, versioned, and governed.
 
 > The result is a self-reinforcing system where support friction is continuously captured, validated, and converted into institutional knowledge.
 
@@ -65,7 +65,7 @@ Operational hub for the documentation team. Surfaces live request volume, status
 
 ### Documentation Requests
 
-> _Placeholder — add `images/documentation-requests.png` when captured._
+> _Placeholder. Add `images/documentation-requests.png` when captured._
 
 Live table of employee-submitted requests with priority, owner assignment, and inline status transitions synced to the Google Sheet backend.
 
@@ -73,7 +73,7 @@ Live table of employee-submitted requests with priority, owner assignment, and i
 
 ![Browse all topics](images/browse-topics-light.png)
 
-Editorial library organized by domain — Account Access, Devices, Networking, Applications, Security, New Employee Setup, and more — with instant filter search.
+Editorial library organized by domain (Account Access, Devices, Networking, Applications, Security, New Employee Setup, and more) with instant filter search.
 
 ### Category Deep-Dive
 
@@ -85,7 +85,7 @@ A category modal surfaces featured articles, full article listings, and per-cate
 
 ![Article overview](images/article-overview.png)
 
-Each article opens with an editorial header — breadcrumbs, category, difficulty, estimated time, common symptoms, and a structured overview — before the interactive walkthrough.
+Each article opens with an editorial header (breadcrumbs, category, difficulty, estimated time, common symptoms, and a structured overview) before the interactive walkthrough.
 
 ### Interactive Walkthrough
 
@@ -95,25 +95,25 @@ Step-by-step troubleshooting with progress tracking, keyboard navigation, and co
 
 ### Analytics
 
-> _Placeholder — add `images/analytics.png` when captured._
+> _Placeholder. Add `images/analytics.png` when captured._
 
 Knowledge-health metrics: articles published, request-to-publish latency, deflection potential, and category coverage.
 
 ### Google Sheets Backend
 
-> _Placeholder — add `images/google-sheets-backend.png` when captured._
+> _Placeholder. Add `images/google-sheets-backend.png` when captured._
 
 A structured Google Sheet acts as the operational datastore for documentation requests: `request_id`, `title`, `category`, `priority`, `status`, `owner`, `submitted_by`, `created_at`, `updated_at`.
 
 ### Google Apps Script Backend
 
-> _Placeholder — add `images/google-apps-script-backend.png` when captured._
+> _Placeholder. Add `images/google-apps-script-backend.png` when captured._
 
 A single `doPost` handler routes actions (`submitDocumentationRequest`, `getDocumentationRequests`, `updateDocumentationRequestStatus`, `submitArticleFeedback`) to typed service functions.
 
 ### Workflow
 
-> _Placeholder — add `images/workflow.png` when captured._
+> _Placeholder. Add `images/workflow.png` when captured._
 
 End-to-end visualization of the documentation lifecycle from employee submission through published article.
 
@@ -218,25 +218,25 @@ flowchart TD
 
 Google Workspace functions as the operational backend for documentation workflows. All frontend traffic is routed through a single service module (`src/services/googleAppsScript.ts`) so the integration is centralized, typed, and swappable.
 
-### Google Sheets — Datastore
+### Google Sheets | Datastore
 - Row-per-request storage with `request_id`, `title`, `category`, `priority`, `status`, `owner`, `submitted_by`, `source`, `created_at`, `updated_at`.
 - Status transitions are auditable and reversible.
 - Serves as the source of truth for the admin dashboard.
 
-### Google Docs — Article Templates
+### Google Docs | Article Templates
 - Standardized documentation templates instantiated per approved request.
 - Enforces consistent formatting: overview, symptoms, prerequisites, step-by-step fix.
 
-### Google Drive — Storage & Versioning
+### Google Drive | Storage & Versioning
 - Generated Docs are organized into a configurable Drive folder.
 - Native Google versioning provides history and rollback.
 
-### Google Apps Script — API + Automation Engine
+### Google Apps Script | API + Automation Engine
 - Deployed as a Web App exposing a single `doPost` endpoint.
 - Routes payloads by `action`: `submitDocumentationRequest`, `getDocumentationRequests`, `updateDocumentationRequestStatus`, `submitArticleFeedback`.
 - Orchestrates Sheets ↔ Docs ↔ Drive ↔ Gmail as one workflow engine.
 
-### Gmail — Notifications
+### Gmail | Notifications
 - Submitters notified on status changes.
 - Reviewers notified on new drafts pending approval.
 
@@ -255,7 +255,7 @@ New  →  In Review  →  Drafting  →  Approved  →  Published  →  Archived
 | **Drafting** | Owner authors the article using the Google Doc template. |
 | **Approved** | Reviewer signs off. Article is queued for publication. |
 | **Published** | Article appears in the Knowledge Library and is searchable. Submitter is notified. |
-| **Archived** | Rejected, duplicate, or retired requests — retained for audit. |
+| **Archived** | Rejected, duplicate, or retired requests. Retained for audit. |
 
 ---
 
@@ -276,12 +276,12 @@ New  →  In Review  →  Drafting  →  Approved  →  Published  →  Archived
 
 > **Design language:** enterprise SaaS with an editorial voice.
 
-- **Typography-forward** — display serifs paired with a neutral sans body.
+- **Typography-forward.** Display serifs paired with a neutral sans body.
 - **Generous whitespace** and a soft, paper-toned canvas.
-- **Minimal chrome** — content leads, controls recede.
-- **High-contrast accents** — a single saturated highlight for emphasis (yellow marker) with theme-aware token overrides.
+- **Minimal chrome.** Content leads, controls recede.
+- **High-contrast accents.** A single saturated highlight for emphasis (yellow marker) with theme-aware token overrides.
 - **Responsive by default** across desktop, tablet, and mobile.
-- **Accessibility-focused** — semantic HTML, keyboard navigation, focus states, screen-reader labels.
+- **Accessibility-focused.** Semantic HTML, keyboard navigation, focus states, screen-reader labels.
 - **Light & Dark modes** driven by design tokens in `src/styles.css`, not hardcoded colors.
 
 ---
@@ -290,14 +290,14 @@ New  →  In Review  →  Drafting  →  Approved  →  Published  →  Archived
 
 - **Type-safe file-based routing** with TanStack Start (`src/routes/*`), including dynamic segments for articles and topics.
 - **Reusable React component system** built on shadcn/ui + Radix primitives, extended with editorial-scale layouts.
-- **Centralized backend adapter** — every Apps Script call flows through `src/services/googleAppsScript.ts` with a discriminated `ApiResult<T>` union, so no component throws on network or configuration failure.
+- **Centralized backend adapter.** Every Apps Script call flows through `src/services/googleAppsScript.ts` with a discriminated `ApiResult<T>` union, so no component throws on network or configuration failure.
 - **Config-driven backend URL** via `VITE_GOOGLE_APPS_SCRIPT_URL`, safe for per-environment rotation without touching code.
 - **Google Sheets as a structured datastore** with a normalized row schema and status enum shared between frontend and Apps Script.
-- **REST-shaped Apps Script API** — single `doPost` dispatcher, action-based routing, JSON envelopes with explicit success/error contracts.
-- **Workflow automation** — status transitions trigger Doc generation, Drive placement, and Gmail notifications.
-- **Design-token system** — semantic tokens in `src/styles.css` power both light and dark themes; components never hardcode color.
+- **REST-shaped Apps Script API.** Single `doPost` dispatcher, action-based routing, JSON envelopes with explicit success/error contracts.
+- **Workflow automation.** Status transitions trigger Doc generation, Drive placement, and Gmail notifications.
+- **Design-token system.** Semantic tokens in `src/styles.css` power both light and dark themes; components never hardcode color.
 - **SSR-ready architecture** on Cloudflare edge runtime via TanStack Start's Vite plugin.
-- **Scalable component layout** — `components/`, `hooks/`, `data/`, `services/`, `routes/` cleanly separated.
+- **Scalable component layout.** `components/`, `hooks/`, `data/`, `services/`, `routes/` cleanly separated.
 
 ---
 
@@ -386,7 +386,7 @@ cp .env.example .env.local
 bun install && bun dev
 ```
 
-> `.env` and `.env.local` are git-ignored — only `.env.example` is committed. Never commit endpoint URLs or keys; rotate the Apps Script deployment if the URL leaks.
+> `.env` and `.env.local` are git-ignored. Only `.env.example` is committed. Never commit endpoint URLs or keys; rotate the Apps Script deployment if the URL leaks.
 
 See [`docs/developer/environment.md`](docs/developer/environment.md) for full deployment and action-reference notes.
 
