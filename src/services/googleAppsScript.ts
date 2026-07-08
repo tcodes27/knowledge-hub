@@ -5,7 +5,7 @@
  * module. The endpoint URL is read from `VITE_GOOGLE_APPS_SCRIPT_URL` so it
  * can be changed without touching application code.
  *
- * Every function returns an `ApiResult<T>` and never throws to the caller —
+ * Every function returns an `ApiResult<T>` and never throws to the caller.
  * missing configuration and network errors are surfaced as `success: false`
  * so the UI can render a friendly message instead of crashing.
  */

@@ -15,13 +15,13 @@ const FORM_ID = "knowledge-capture-form";
 export const Route = createFileRoute("/request")({
   head: () => ({
     meta: [
-      { title: "Knowledge Capture — Knowledge Hub" },
+      { title: "Knowledge Capture | Knowledge Hub" },
       {
         name: "description",
         content:
           "Submit organizational knowledge via manual entry, file upload, existing integrations, or AI-assisted capture.",
       },
-      { property: "og:title", content: "Knowledge Capture — Knowledge Hub" },
+      { property: "og:title", content: "Knowledge Capture | Knowledge Hub" },
       {
         property: "og:description",
         content:
@@ -51,7 +51,7 @@ function RequestPage() {
 
         <div className="mt-10 space-y-6">
           <Section
-            number="01 — Documentation Details"
+            number="01. Documentation Details"
             title="Documentation details"
             description="Tell us what the article is about. These fields are required."
             accent={method === "manual"}
@@ -60,17 +60,17 @@ function RequestPage() {
           </Section>
 
           <Section
-            number="02 — Submission Method"
+            number="02. Submission Method"
             title="How do you want to submit?"
-            description="Pick a method — you can combine several before submitting."
+            description="Pick a method. You can combine several before submitting."
           >
             <MethodCards value={method} onChange={setMethod} />
           </Section>
 
           <Section
-            number="03 — Upload Files"
+            number="03. Upload Files"
             title="Upload supporting files"
-            description="Drop in the raw material — we'll turn it into an article."
+            description="Drop in the raw material. We'll turn it into an article."
             badge={{ label: "Phase 2", tone: "phase2" }}
             accent={method === "upload"}
           >
@@ -78,7 +78,7 @@ function RequestPage() {
           </Section>
 
           <Section
-            number="04 — Import Existing Knowledge"
+            number="04. Import Existing Knowledge"
             title="Import from existing sources"
             description="Pull content from the tools your team already uses."
             badge={{ label: "Planned", tone: "planned" }}
@@ -88,7 +88,7 @@ function RequestPage() {
           </Section>
 
           <Section
-            number="05 — AI Assisted Capture"
+            number="05. AI Assisted Capture"
             title="AI assisted capture"
             description="Paste raw content and let AI shape it into a publishable article."
             badge={{ label: "AI Coming Soon", tone: "ai" }}
@@ -97,11 +97,11 @@ function RequestPage() {
             <AiAssisted />
           </Section>
 
-          <Section number="06 — Submit" title="Submit for review">
+          <Section number="06. Submit" title="Submit for review">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-muted-foreground">
                 Uploaded files and integrations show{" "}
-                <span className="font-medium text-foreground/80">"Available in Phase 2"</span> — only the
+                <span className="font-medium text-foreground/80">"Available in Phase 2"</span>. Only the
                 manual form submits today.
               </p>
               <button

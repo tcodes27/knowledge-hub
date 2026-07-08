@@ -38,9 +38,9 @@ export const Route = createFileRoute("/articles/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.article.title ?? "Article"} — Knowledge Hub` },
+      { title: `${loaderData?.article.title ?? "Article"} | Knowledge Hub` },
       { name: "description", content: loaderData?.article.summary ?? "" },
-      { property: "og:title", content: `${loaderData?.article.title ?? "Article"} — Knowledge Hub` },
+      { property: "og:title", content: `${loaderData?.article.title ?? "Article"} | Knowledge Hub` },
       { property: "og:description", content: loaderData?.article.summary ?? "" },
     ],
   }),
@@ -530,7 +530,7 @@ export function ArticleView({
         </div>
         {helpful && (
           <p className="mt-3 text-center text-sm text-muted-foreground animate-fade-in-up">
-            Thanks for the feedback — we use it to improve these guides.
+            Thanks for the feedback. We use it to improve these guides.
           </p>
         )}
       </section>
@@ -566,7 +566,7 @@ export function ArticlePreviewBanner({ sourceLabel }: { sourceLabel?: string }) 
       <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 px-6 py-3 text-sm text-navy">
         <span className="inline-flex items-center gap-2 font-semibold">
           <Eye className="h-4 w-4" />
-          Preview mode — {sourceLabel ?? "imported content"} not yet published
+          Preview mode. {sourceLabel ?? "imported content"} not yet published.
         </span>
         <Link
           to="/admin"

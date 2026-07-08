@@ -54,9 +54,9 @@ import { useInView } from "@/hooks/use-in-view";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Admin Dashboard — Knowledge Hub" },
+      { title: "Admin Dashboard | Knowledge Hub" },
       { name: "description", content: "Operational dashboard for managing IT documentation, analytics, and workflow." },
-      { property: "og:title", content: "Admin Dashboard — Knowledge Hub" },
+      { property: "og:title", content: "Admin Dashboard | Knowledge Hub" },
       { property: "og:description", content: "Operational dashboard for managing IT documentation, analytics, and workflow." },
     ],
   }),
@@ -272,7 +272,7 @@ function AdminPage() {
         </div>
       </section>
 
-      {/* SECTION 1 — Documentation Analytics */}
+      {/* SECTION 1: Documentation Analytics */}
       <SectionHeader
         eyebrow="Section 1"
         title="Documentation analytics"
@@ -359,7 +359,7 @@ function AdminPage() {
         </div>
       </section>
 
-      {/* SECTION 1.5 — Live Documentation Requests */}
+      {/* SECTION 1.5: Live Documentation Requests */}
       <SectionHeader
         eyebrow="Section 1.5 · Live"
         title="Documentation requests"
@@ -367,7 +367,7 @@ function AdminPage() {
       />
       <LiveRequestsSection />
 
-      {/* SECTION 2 — Quick Actions */}
+      {/* SECTION 2: Quick Actions */}
       <SectionHeader
         eyebrow="Section 2"
         title="Quick actions"
@@ -429,7 +429,7 @@ function AdminPage() {
       </section>
 
 
-      {/* SECTION 2.5 — Knowledge Capture */}
+      {/* SECTION 2.5: Knowledge Capture */}
       <SectionHeader
         eyebrow="Section 2.5 · Phase 2 preview"
         title="Knowledge capture"
@@ -438,7 +438,7 @@ function AdminPage() {
       <KnowledgeCaptureSection onManualCapture={() => setModal("submit")} />
 
 
-      {/* SECTION 3 — Documentation Workflow */}
+      {/* SECTION 3: Documentation Workflow */}
       <SectionHeader
         eyebrow="Section 3"
         title="Documentation workflow"
@@ -446,7 +446,7 @@ function AdminPage() {
       />
       <WorkflowSection />
 
-      {/* SECTION 3.5 — Automation Workflow Demo */}
+      {/* SECTION 3.5: Automation Workflow Demo */}
       <SectionHeader
         eyebrow="Section 3.5 · MVP Concept Demo"
         title="Automation workflow demo"
@@ -454,7 +454,7 @@ function AdminPage() {
       />
       <AutomationDemo />
 
-      {/* SECTION 4 — Best Practices */}
+      {/* SECTION 4: Best Practices */}
       <SectionHeader
         eyebrow="Section 4"
         title="Documentation best practices"
@@ -956,7 +956,7 @@ function LiveRequestsSection() {
     requestId: string,
     nextStatus: DocumentationRequestStatus,
   ) => {
-    if (!requestId || requestId === "—") {
+    if (!requestId || requestId === "N/A") {
       setModal({
         kind: "error",
         message: "This request is missing an ID and can't be updated.",
@@ -1164,9 +1164,9 @@ function RequestRow({
   onStatusChange: (status: DocumentationRequestStatus) => void;
 }) {
   const r = req as unknown as Record<string, unknown>;
-  const id = String(r.id ?? r.request_id ?? r.requestId ?? "—");
+  const id = String(r.id ?? r.request_id ?? r.requestId ?? "N/A");
   const title = String(r.title ?? "Untitled");
-  const category = String(r.category ?? "—");
+  const category = String(r.category ?? "N/A");
   const priority = String(r.priority ?? "Normal");
   const rawStatus = String(r.status ?? "New");
   const status = normalizeStatus(rawStatus);

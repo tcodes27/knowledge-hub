@@ -50,7 +50,7 @@ export const sampleImportedRow: ImportedArticleRow = {
     {
       type: "tip",
       title: "Quick tip",
-      body: "Have your phone nearby — you'll set up multi-factor authentication in the first few steps.",
+      body: "Have your phone nearby. You'll set up multi-factor authentication in the first few steps.",
     },
     {
       type: "warning",
@@ -78,7 +78,7 @@ export const sampleImportedRow: ImportedArticleRow = {
       items: [
         {
           q: "What if my temporary password doesn't work?",
-          a: "Contact your onboarding buddy or open a ticket via the IT portal — do not attempt to reset it yourself before signing in.",
+          a: "Contact your onboarding buddy or open a ticket via the IT portal. Do not attempt to reset it yourself before signing in.",
         },
         {
           q: "Can I install personal apps?",
@@ -89,7 +89,7 @@ export const sampleImportedRow: ImportedArticleRow = {
     {
       type: "callout",
       title: "Almost done",
-      body: "Once you've completed the checklist, mark this article as helpful — it feeds our onboarding metrics.",
+      body: "Once you've completed the checklist, mark this article as helpful. It feeds our onboarding metrics.",
     },
   ]),
   steps_json: JSON.stringify([
@@ -99,7 +99,7 @@ export const sampleImportedRow: ImportedArticleRow = {
       description: "Plug the laptop in and press the power button.",
       details: "Let it charge for a few minutes before signing in.",
       estimatedTime: "2 min",
-      tip: "Keep the box — you'll need it if the device is ever returned.",
+      tip: "Keep the box. You'll need it if the device is ever returned.",
     },
     {
       title: "Connect to Wi-Fi",

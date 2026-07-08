@@ -9,7 +9,7 @@ import type { ArticleSection } from "@/data/articles";
 
 /**
  * Renders a list of structured article sections with the design system.
- * Safe against unknown types — unknown/malformed sections are skipped.
+ * Safe against unknown types. Unknown or malformed sections are skipped.
  */
 export function ArticleSections({ sections }: { sections?: ArticleSection[] }) {
   if (!sections || sections.length === 0) return null;

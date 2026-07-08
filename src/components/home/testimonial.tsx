@@ -30,7 +30,7 @@ export function Testimonial() {
           <div className="rounded-2xl border border-border bg-card p-10 shadow-card md:p-14">
             <p className="font-display text-3xl leading-[1.15] tracking-tight text-foreground md:text-4xl">
               "We replaced three tools with Knowledge Hub. Our team now finds
-              answers in seconds — and the writing experience is
+              answers in seconds, and the writing experience is
               <span className="highlight-yellow"> genuinely a pleasure</span>."
             </p>
             <div className="mt-10 flex items-center gap-4">
