@@ -59,7 +59,7 @@ The platform is designed to:
 
 ### Dashboard
 
-![Admin dashboard](images/admin-dashboard.png)
+> _Placeholder. Add `` when captured._
 
 Operational hub for the documentation team. Surfaces live request volume, status distribution, quick actions, and workflow health at a glance.
 
