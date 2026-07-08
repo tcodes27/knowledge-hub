@@ -11,6 +11,15 @@
  */
 
 const API_URL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL as string | undefined;
+export const SHEET_ID = import.meta.env.VITE_GOOGLE_SHEET_ID as string | undefined;
+export const DRIVE_FOLDER_ID = import.meta.env.VITE_GOOGLE_DRIVE_FOLDER_ID as string | undefined;
+
+if (!API_URL && typeof console !== "undefined" && import.meta.env.DEV) {
+  console.warn(
+    "[Knowledge Hub] Google Apps Script endpoint is not configured. " +
+      "Please set VITE_GOOGLE_APPS_SCRIPT_URL in your environment (see .env.example).",
+  );
+}
 
 export type ApiResult<T = unknown> = { success: true; data: T } | { success: false; message: string; error?: unknown };
 

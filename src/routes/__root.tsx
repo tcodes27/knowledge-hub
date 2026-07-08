@@ -128,8 +128,25 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <MissingEnvBanner />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
+  );
+}
+
+function MissingEnvBanner() {
+  if (!import.meta.env.DEV) return null;
+  if (import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL) return null;
+  return (
+    <div
+      role="status"
+      className="w-full border-b border-amber-300 bg-amber-100 px-4 py-2 text-center text-xs text-amber-900 dark:border-amber-700 dark:bg-amber-900/40 dark:text-amber-100"
+    >
+      Google Apps Script endpoint is not configured. Copy{" "}
+      <code className="font-mono">.env.example</code> to{" "}
+      <code className="font-mono">.env.local</code> and set{" "}
+      <code className="font-mono">VITE_GOOGLE_APPS_SCRIPT_URL</code>.
+    </div>
   );
 }

@@ -372,16 +372,21 @@ npm run preview
 
 ## Environment Variables
 
-Copy `.env.example` to `.env.local` and populate:
+Copy `.env.example` to `.env.local` and populate the values before running the project:
 
-| Variable | Purpose |
-| --- | --- |
-| `SUPABASE_URL` | Supabase project URL. |
-| `SUPABASE_ANON_KEY` | Publishable Supabase key for the browser client. |
-| `GOOGLE_SCRIPT_URL` | Deployed Google Apps Script Web App `/exec` endpoint (exposed to the client as `VITE_GOOGLE_APPS_SCRIPT_URL`). |
-| `GOOGLE_DRIVE_FOLDER` | Drive folder ID where generated Docs are stored. |
+| Variable | Required | Description |
+|----------|----------|-------------|
+| VITE_GOOGLE_APPS_SCRIPT_URL | Yes | Google Apps Script Web App deployment URL |
+| VITE_GOOGLE_SHEET_ID | Optional | Google Spreadsheet ID used by Apps Script |
+| VITE_GOOGLE_DRIVE_FOLDER_ID | Optional | Google Drive folder used for documentation |
 
-> `.env.local` is git-ignored. Never commit endpoint URLs or keys — rotate the Apps Script deployment if the URL leaks.
+```bash
+cp .env.example .env.local
+# then edit .env.local with your values
+bun install && bun dev
+```
+
+> `.env` and `.env.local` are git-ignored — only `.env.example` is committed. Never commit endpoint URLs or keys; rotate the Apps Script deployment if the URL leaks.
 
 See [`docs/developer/environment.md`](docs/developer/environment.md) for full deployment and action-reference notes.
 
