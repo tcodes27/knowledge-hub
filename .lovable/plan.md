@@ -1,36 +1,58 @@
-## Fix: stats alignment, default light theme, dark-mode yellow readability
+## Goal
 
-Three scoped changes. Keeps the neon yellow highlights — just makes the text on them readable in dark mode.
+Rewrite `README.md` as a polished portfolio case study for Knowledge Hub, and embed the six screenshots the user just uploaded so the README visually walks through the product.
 
-### 1. Hero stats alignment + visible divider (`src/routes/index.tsx`)
+## Scope
 
-"AVG. RESOLUTION" wraps to two lines while "ARTICLES" and "SELF-SERVE" stay on one, so `5 min` drops below `50+` / `24/7`. The `border-t` also nearly disappears on cream.
+- Rewrite `README.md` only.
+- Copy the six uploaded screenshots from `/mnt/user-uploads/` into `images/` in the repo (git-tracked, so they render on GitHub) with descriptive filenames.
+- No app code, styles, or route changes.
 
-- Each grid item becomes `flex flex-col justify-between` with `min-h-[4.5rem]` so the numbers sit on a shared baseline regardless of label wrap.
-- Add `min-h-[2rem]` and `leading-[1.25]` to the `<dt>` so single-line labels reserve two lines of space.
-- Change the divider from `border-border` to `border-foreground/15` and bump `pt-8` → `pt-10`.
+## Screenshots to add
 
-### 2. Default to light theme on first visit
+Copy from `user-uploads://` → `images/`:
 
-Currently the theme falls back to the OS `prefers-color-scheme`, so dark-OS visitors land in dark mode. Stored preference should still win.
+| Source upload | New file | Used in README section |
+| --- | --- | --- |
+| `Screenshot_2026-07-08_at_1.06.55_PM.png` | `images/hero-light.png` | Hero / Overview |
+| `Screenshot_2026-07-08_at_1.07.11_PM.png` | `images/browse-topics-light.png` | Knowledge Library |
+| `Screenshot_2026-07-08_at_1.07.25_PM.png` | `images/category-modal.png` | Category deep-dive |
+| `Screenshot_2026-07-08_at_1.07.34_PM.png` | `images/article-overview.png` | Article / Request Details |
+| `Screenshot_2026-07-08_at_1.07.45_PM.png` | `images/article-step-light.png` | Interactive walkthrough (light) |
+| `Screenshot_2026-07-08_at_1.08.13_PM.png` | `images/article-step-dark.png` | Interactive walkthrough (dark) — shows theme system |
 
-- `src/hooks/use-theme.ts` — in `getInitialTheme()`, drop the `matchMedia` fallback and return `"light"` when nothing is stored.
-- `src/routes/__root.tsx` — update the inline `themeInitScript` the same way: if no stored value, use `"light"`.
+Existing `images/admin-dashboard.png` (already referenced in the current README) stays and powers the Dashboard section. For the Google Sheets backend, Google Apps Script backend, Analytics, and Workflow sections — the user did not upload screenshots for these, so use markdown placeholder image links (`images/google-sheets-backend.png`, etc.) with a short italic caption noting the placeholder, so the user can drop real images in later without editing the README.
 
-### 3. Dark-mode yellow: keep the color, darken the text on it
+## README structure (final)
 
-The neon `#FFF76D` stays. The problem is text sitting on yellow in dark mode is unreadable because the `.highlight-yellow` utility uses `color: var(--foreground)` — which is cream in dark mode, so cream text ends up on cream-yellow.
+1. **Hero** — Title, one-sentence pitch, badge row (React, TypeScript, Tailwind CSS, Supabase, Google Apps Script, Google Sheets, Google Docs, Google Drive, Gmail, Cloudflare Pages).
+2. **Overview** — Centralizes knowledge, automates documentation, single source of truth. Embed `hero-light.png` under the intro.
+3. **Key Features** — Markdown table covering all 12 requested capabilities.
+4. **Screenshots** — Sections: Dashboard, Documentation Requests, Knowledge Library, Analytics, Request Details, Google Sheets backend, Google Apps Script backend, Workflow. Each has an image (real or placeholder) + 1–2 sentence explanation. Also add a "Light & Dark Mode" mini-section pairing `article-step-light.png` and `article-step-dark.png`.
+5. **Architecture** — Mermaid `flowchart TD`: Frontend → Supabase → Apps Script → Sheets → Docs → Drive → Gmail.
+6. **Workflow** — Mermaid `flowchart TD` for the request lifecycle.
+7. **Technology Stack** — Grouped tables (Frontend, Backend, Google Workspace, Deployment, Version Control).
+8. **Google Workspace Integration** — Subsections per service.
+9. **Documentation Workflow** — Status lifecycle: New → In Review → Drafting → Approved.
+10. **Dashboard Features** — Bulleted capability list.
+11. **UI Design** — Design system callout (enterprise SaaS, editorial typography, dark theme, accessibility).
+12. **Engineering Highlights** — Technical accomplishments.
+13. **Future Enhancements** — Roadmap table.
+14. **Project Structure** — Directory tree matching current `src/`.
+15. **Installation** — `npm install` / `dev` / `build` / `preview`.
+16. **Environment Variables** — Table: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `GOOGLE_SCRIPT_URL`, `GOOGLE_DRIVE_FOLDER`.
+17. **Author** — Tierra Barrow, AI Support Operations Manager / AI Automation Consultant, GitHub link, live site `https://knowledge-hub.tierrabcodes.workers.dev/`.
 
-- `src/styles.css` — in the `@utility highlight-yellow` block, change `color: var(--foreground)` to a fixed dark ink (`color: #1A130A`) so highlighted words always render as very dark brown/black on the yellow, in both themes. The light-mode look stays essentially identical (light `--foreground` was already near-black); dark mode goes from cream-on-yellow (invisible) to ink-on-yellow (crisp).
-- Also set `--warning-foreground: #1A130A` inside `.dark` (currently `#17110B` — fine, but confirm consistency) and leave `--accent-foreground` (already `#17110B`) as-is. Warning/accent chip text was already dark, so this is a no-op safeguard.
+## Style rules
 
-### Out of scope
+- Concise, technical, professional tone.
+- Length target: ~350–450 lines.
+- Tables, Mermaid diagrams, blockquote callouts, shields.io badges.
+- No emojis in Mermaid syntax.
+- Descriptions stay accurate to the actual codebase (TanStack Start, Vite, Tailwind v4, shadcn/ui, Google Apps Script service layer already in `src/services/googleAppsScript.ts`).
 
-- No favicon, Apps Script, admin, or content changes.
-- Yellow hue and highlight utility name are unchanged.
+## Out of scope
 
-### Verification
-
-1. Fresh browser (no storage) on a dark-OS machine → site loads in light mode.
-2. Toggle to dark → the yellow highlight bands on the homepage ("operating knowledge", "editorial calm", testimonial phrase) show dark ink text on the yellow, clearly readable.
-3. Hero: `5 min`, `50+`, `24/7` share a baseline; divider is clearly visible on cream.
+- App code, routes, or styles.
+- Actually wiring Supabase (README describes the intended architecture, matching the current README's phased notes).
+- Generating fake screenshots for the backend/analytics/workflow slots — those stay as clearly-labeled placeholder paths.
